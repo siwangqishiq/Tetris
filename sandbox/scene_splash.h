@@ -17,6 +17,8 @@ public:
     void update();
 
     void render();
+
+    void onInputEvent(purple::InputEvent &event);
 private:
     TetrisGame *game;
 
@@ -32,4 +34,8 @@ private:
 
     std::vector<std::wstring> menuNames = {L"新游戏",L"退出"};
     int currentMenuIndex = 0;
+
+    void pressEnterKey();
+    void selectNextMenuItem();
+    void selectPriorMenuItem();
 };

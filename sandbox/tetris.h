@@ -20,6 +20,9 @@ public:
     virtual void onTick() override;
     virtual void onDispose() override;
     
+    virtual bool onInputEvent(purple::InputEvent &event);
+
+    void updateState(GameState newState);
 private:
     std::string TAG = "TetrisGame";
 

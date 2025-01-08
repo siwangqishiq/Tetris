@@ -1,6 +1,7 @@
 #include "tetris.h"
 #include "purple.h"
 #include "purple_ui.h"
+#include "input/input_manager.h"
 
 void TetrisGame::onInit(){
     splashScene = std::make_shared<SceneSplash>(this);
@@ -9,6 +10,9 @@ void TetrisGame::onInit(){
 
     splashScene->init();
     gameScene->init();
+    purple::InputManager::getInstance()->addEventListener("input" , [this](purple::InputEvent &event){
+        return this->onInputEvent(event);
+    });
     
     state = Splash;
 }
@@ -30,8 +34,29 @@ void TetrisGame::onTick(){
     }//end switch
 }
 
-void TetrisGame::onDispose(){
+void TetrisGame::updateState(GameState newState){
+    if(state != newState){
+        state = newState;
+    }
+}
 
+bool TetrisGame::onInputEvent(purple::InputEvent &event){
+    switch(state){
+        case Splash:
+            splashScene->onInputEvent(event);
+            break;
+        case Start:
+            break;
+        case GameOver:
+            break;
+        default:
+            break;
+    }//end switch
+    return false;
+}
+
+void TetrisGame::onDispose(){
+    purple::InputManager::getInstance()->clearCallback();
 }
 
 
