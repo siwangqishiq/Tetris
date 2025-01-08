@@ -9,8 +9,8 @@ void TetrisGame::onInit(){
 
     splashScene->init();
     gameScene->init();
-
-    state = Start;
+    
+    state = Splash;
 }
 
 void TetrisGame::onTick(){
