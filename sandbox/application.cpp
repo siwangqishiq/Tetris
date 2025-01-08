@@ -38,7 +38,6 @@ void Application::init(){
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
     
-
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // glfwWindowHint(GLFW_DECORATED , GLFW_FALSE); 
@@ -47,6 +46,7 @@ void Application::init(){
 
     GLFWmonitor *mointor = isFullScreen?glfwGetPrimaryMonitor():nullptr;
 
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     window = glfwCreateWindow(screenWidth, screenHeight, "run", mointor, nullptr);
     
     glfwSetCharCallback(window , [](GLFWwindow* window_, unsigned int codepoint){

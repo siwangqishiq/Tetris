@@ -2,10 +2,12 @@
 
 #include <memory>
 #include "purple.h"
+#include "scene_splash.h"
+#include "scene_game.h"
 
 enum GameState{
     Splash = 0,
-    GameStart = 1,
+    Start = 1,
     GameOver = 10
 };
 
@@ -20,4 +22,7 @@ public:
     
 private:
     std::string TAG = "TetrisGame";
+
+    std::shared_ptr<SceneSplash> splashScene = nullptr;
+    std::shared_ptr<SceneGame> gameScene = nullptr;
 };

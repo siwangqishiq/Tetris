@@ -3,19 +3,31 @@
 #include "purple_ui.h"
 
 void TetrisGame::onInit(){
-    
+    splashScene = std::make_shared<SceneSplash>(this);
+    gameScene = std::make_shared<SceneGame>(this);
+
+
+    splashScene->init();
+    gameScene->init();
+
+    state = Start;
 }
 
 void TetrisGame::onTick(){
-    using namespace purple;
-
-    auto textRender = Engine::getRenderEngine()->getTextRender();
-    Rect rect(0.0f, purple::Engine::ScreenHeight
-        , purple::Engine::ScreenWidth,  purple::Engine::ScreenHeight);
-    TextPaint textPaint;
-    textPaint.textColor = ConverColorValue(Color::Silver);
-    textPaint.textGravity = TextGravity::Center;
-    Engine::getRenderEngine()->renderTextWithRect(L"Terris", rect , textPaint , nullptr);
+    switch(state){
+        case Splash:
+            splashScene->update();
+            splashScene->render();
+            break;
+        case Start:
+            gameScene->update();
+            gameScene->render();
+            break;
+        case GameOver:
+            break;
+        default:
+            break;
+    }//end switch
 }
 
 void TetrisGame::onDispose(){
