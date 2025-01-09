@@ -3,6 +3,8 @@
 #include "purple_ui.h"
 #include "input/input_manager.h"
 
+extern bool isAppExist;//外部全局变量 控制退出app
+
 void TetrisGame::onInit(){
     splashScene = std::make_shared<SceneSplash>(this);
     gameScene = std::make_shared<SceneGame>(this);
@@ -40,6 +42,10 @@ void TetrisGame::updateState(GameState newState){
     }
 }
 
+void TetrisGame::exitGame(){
+    isAppExist = true;
+}
+
 bool TetrisGame::onInputEvent(purple::InputEvent &event){
     switch(state){
         case Splash:
@@ -57,6 +63,9 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
 
 void TetrisGame::onDispose(){
     purple::InputManager::getInstance()->clearCallback();
+    if(splashScene != nullptr){
+        splashScene->dispose();
+    }
 }
 
 

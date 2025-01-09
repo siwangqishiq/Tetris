@@ -2,12 +2,22 @@
 #include "purple_ui.h"
 #include "render/sprite.h"
 #include "tetris.h"
+#include "audio/audio.h"
 
 void SceneSplash::init(){
     logoImage = purple::BuildImageByAsset("img/logo.png");
 
     logoTop = purple::Engine::ScreenHeight - 120;
     logoWidth = purple::Engine::ScreenHeight / 1.5f;
+
+    audioItemChange = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/menu_item_change.mp3");
+}
+
+void SceneSplash::dispose(){
+    if(audioItemChange != nullptr){
+        purple::AudioManager::getInstance()->releaseAudioEntity(audioItemChange);
+    }
 }
 
 void SceneSplash::onInputEvent(purple::InputEvent &event){
@@ -23,13 +33,19 @@ void SceneSplash::onInputEvent(purple::InputEvent &event){
 
 void SceneSplash::pressEnterKey(){
     purple::Log::i("SceneSplash" , "pressEnterKey");
-    if(currentMenuIndex == 0){
+
+    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+
+    if(currentMenuIndex == MENU_START_GAME){
         game->updateState(GameState::Start);
+    }else if(currentMenuIndex == MENU_EXIT_GAME){
+        game->exitGame();
     }
 }
 
 void SceneSplash::selectNextMenuItem(){
     purple::Log::i("SceneSplash" , "selectNextMenuItem");
+    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
 
     currentMenuIndex = (currentMenuIndex + 1) % menuNames.size();
     purple::Log::i("SceneSplash" , "currentMenuIndex = %d" , currentMenuIndex);
@@ -37,6 +53,8 @@ void SceneSplash::selectNextMenuItem(){
 
 void SceneSplash::selectPriorMenuItem(){
     purple::Log::i("SceneSplash" , "selectPriorMenuItem");
+    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+
     const int newIndex = currentMenuIndex - 1;
     if(newIndex < 0){
         currentMenuIndex = menuNames.size() - 1;

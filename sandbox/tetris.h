@@ -23,6 +23,8 @@ public:
     virtual bool onInputEvent(purple::InputEvent &event);
 
     void updateState(GameState newState);
+
+    void exitGame();
 private:
     std::string TAG = "TetrisGame";
 

@@ -12,6 +12,8 @@
 int Application::fps = 0;
 bool isFullScreen = false;
 
+bool isAppExist = false;
+
 void Application::onCreate(){
     purple::Engine::getTimer()->scheduleAtFixedRate([this](void *app){
         fpsStr = std::to_wstring(fps);
@@ -67,7 +69,7 @@ void Application::init(){
         purple::InputManager::getInstance()->onEvent(event);
         
         if(glfwGetKey(windows_, GLFW_KEY_ESCAPE) == GLFW_PRESS){
-            glfwSetWindowShouldClose(windows_, true);
+            isAppExist = true;
         }
         
     });
@@ -183,6 +185,11 @@ void Application::init(){
 
 void Application::tick(){
     // std::cout << " begin tick" << std::endl;
+    if(isAppExist){ //exist App
+        glfwSetWindowShouldClose(window, true);
+        return;
+    }
+
     purple::Engine::tick();
 
     for(auto &app : appInstanceList){
