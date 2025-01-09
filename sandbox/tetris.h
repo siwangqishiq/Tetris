@@ -2,8 +2,8 @@
 
 #include <memory>
 #include "purple.h"
-#include "scene_splash.h"
-#include "scene_game.h"
+#include "scene/scene_splash.h"
+#include "scene/scene_game.h"
 
 enum GameState{
     Splash = 0,

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="cubes.svg"
+   inkscape:export-filename="cubes.png"
+   inkscape:export-xdpi="256.03864"
+   inkscape:export-ydpi="256.03864"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0535659"
+     inkscape:cx="432.90551"
+     inkscape:cy="393.21845"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="use20-5"
+       transform="matrix(0.26648134,0,0,0.26648135,101.12813,76.322044)">
+      <!-- color for "I" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#00cccc"
+         id="rect18" />
+      <polygon
+         fill="#00ffff"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon19" />
+      <polygon
+         fill="#009999"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon20" />
+    </g>
+    <g
+       id="use22-1"
+       transform="matrix(0.26458333,0,0,0.26458334,132.90211,76.271823)">
+      <!-- color for "T" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#9900cc"
+         id="rect5" />
+      <polygon
+         fill="#cc00ff"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon9" />
+      <polygon
+         fill="#660099"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon10" />
+    </g>
+    <g
+       id="use23-8"
+       transform="matrix(0.26458333,0,0,0.26458334,94.797586,76.381657)">
+      <!-- color for "O" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#cccc00"
+         id="rect16" />
+      <polygon
+         fill="#ffff00"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon17" />
+      <polygon
+         fill="#999900"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon18" />
+    </g>
+    <g
+       id="use34-6"
+       transform="matrix(0.26458333,0,0,0.26458334,107.52368,76.3155)">
+      <!-- color for "Z" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#cc0000"
+         id="rect22" />
+      <polygon
+         fill="#ff0000"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon23" />
+      <polygon
+         fill="#990000"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon24" />
+    </g>
+    <g
+       id="use48-3"
+       transform="matrix(0.26458333,0,0,0.26458334,120.21438,76.322359)">
+      <!-- color for "S" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#00cc00"
+         id="rect1" />
+      <polygon
+         fill="#00ff00"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon1" />
+      <polygon
+         fill="#009900"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon2" />
+    </g>
+    <g
+       id="use66-6"
+       transform="matrix(0.26458333,0,0,0.26458334,113.87364,76.287807)">
+      <!-- color for "J" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#0000cc"
+         id="rect11" />
+      <polygon
+         fill="#0000ff"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon13" />
+      <polygon
+         fill="#000099"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon16" />
+    </g>
+    <g
+       id="use78-6"
+       transform="matrix(0.26458333,0,0,0.26458334,126.58382,76.280881)">
+      <!-- color for "L" tetromino -->
+      <rect
+         x="2"
+         y="2"
+         width="20"
+         height="20"
+         fill="#cc6600"
+         id="rect20" />
+      <polygon
+         fill="#ff8800"
+         points="24,0 22,2 2,2 2,22 0,24 0,0 "
+         id="polygon21" />
+      <polygon
+         fill="#994400"
+         points="24,24 0,24 2,22 22,22 22,2 24,0 "
+         id="polygon22" />
+    </g>
+    <g
+       id="g4"
+       transform="translate(22.25735,-13.405004)">
+      <rect
+         style="fill:#999999;stroke-width:0.261774"
+         id="rect3"
+         width="6.3546619"
+         height="6.3546619"
+         x="116.97792"
+         y="89.669403" />
+      <g
+         id="g3">
+        <path
+           id="rect3-3"
+           style="fill:#4d4d4d;stroke-width:0.260836"
+           d="m 116.99204,96.017073 v 0.01656 h 6.33144 l 3.5e-4,-6.331804 h -0.0166 z" />
+        <rect
+           style="fill:#666666;stroke-width:0.215161"
+           id="rect3-4"
+           width="5.2196398"
+           height="5.2266016"
+           x="117.56644"
+           y="90.228874" />
+      </g>
+    </g>
+  </g>
+</svg>

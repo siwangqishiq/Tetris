@@ -1,4 +1,4 @@
-#include "scene_splash.h"
+#include "scene/scene_splash.h"
 #include "purple_ui.h"
 #include "render/sprite.h"
 #include "tetris.h"

@@ -20,13 +20,13 @@ if(APPLE)
     message(STATUS "This macos ")
 endif()
 
+include_directories(sandbox)
 include_directories(purple/include)
 include_directories(vender/glfw/include)
 
 add_subdirectory(purple)
-# add_subdirectory(vender/glfw)
 
-aux_source_directory(sandbox SRCS)
+# file(GLOB_RECURSE ALL_SOURCE_FILES "${SOURCE_DIR}/*.cpp")
 
 if (WIN32)
     message(STATUS "Using Win32 library")
@@ -54,9 +54,21 @@ else()
     message(STATUS "This is not a Linux system with ARM architecture")
 endif()
 
-# link_libraries(glfw3)
+aux_source_directory(sandbox SRC)
+aux_source_directory(sandbox/panel SRC_PANEL)
+aux_source_directory(sandbox/scene SRC_SCENE)
 
-add_executable(${PROJECT_NAME} ${SRCS})
+set(src_list "")
+list(APPEND src_list ${SRC})
+list(APPEND src_list ${SRC_PANEL})
+list(APPEND src_list ${SRC_INPUT})
+list(APPEND src_list ${SRC_SCENE})
+
+set(src_list_count "")
+list(LENGTH src_list src_list_count)
+message("${PROJECT_NAME} src file count : ${src_list_count}")
+
+add_executable(${PROJECT_NAME} ${src_list})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-Wall")
 # set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-mwindows")
