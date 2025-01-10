@@ -2,6 +2,7 @@
 #include "purple.h"
 #include "purple_ui.h"
 #include "input/input_manager.h"
+#include "render/sprite.h"
 
 extern bool isAppExist;//外部全局变量 控制退出app
 
@@ -9,14 +10,27 @@ void TetrisGame::onInit(){
     splashScene = std::make_shared<SceneSplash>(this);
     gameScene = std::make_shared<SceneGame>(this);
 
-
     splashScene->init();
     gameScene->init();
     purple::InputManager::getInstance()->addEventListener("input" , [this](purple::InputEvent &event){
         return this->onInputEvent(event);
     });
     
-    state = Splash;
+    loadResoures();
+
+    state = Start;
+}
+
+void TetrisGame::loadResoures(){
+    purple::Engine::getRenderEngine()->loadTextFontRes("youyuan","text/youyuan.ttf", true);
+
+    cubesTexture = purple::BuildImageByAsset("img/cubes.png");
+
+    const int size = 64;
+    for(int i = 0 ; i < CubeColor::End; i++){
+        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size, size);
+        cubesTextureList.push_back(textureRegion);
+    }//end for i
 }
 
 void TetrisGame::onTick(){

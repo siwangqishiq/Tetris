@@ -11,19 +11,18 @@ PanelScore::PanelScore(TetrisGame *game, float fontSize, float left
     this->top = top; 
     this->left = left;
     this->width = width;
-
-
+    
 }
 
 void PanelScore::update(){
-    score++;
+    // score++;
 }
 
 void PanelScore::render(){
     purple::TextPaint textPaint;
     textPaint.setTextSize(fontSize);
     textPaint.textColor = purple::ConverColorValue(purple::Color::White);
-    // textPaint.fontName = "heiti";
+    textPaint.fontName = "youyuan";
     textPaint.textGravity = purple::TextGravity::Center; 
 
     purple::Rect titleRect(left , top , width, fontSize);

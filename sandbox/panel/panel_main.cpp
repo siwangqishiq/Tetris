@@ -20,11 +20,18 @@ void PanelMain::update(){
 }
 
 void PanelMain::render(){
-    auto shapeBatch = purple::Engine::getRenderEngine()->getShapeBatch();
-    shapeBatch->begin();
-    purple::Paint paint;
-    paint.color = purple::ConverColorValue(purple::Color::Yellow);
-    shapeBatch->renderRect(rect , paint);
-    shapeBatch->end();
+    // auto shapeBatch = purple::Engine::getRenderEngine()->getShapeBatch();
+    // shapeBatch->begin();
+    // purple::Paint paint;
+    // paint.color = purple::ConverColorValue(purple::Color::Yellow);
+    // shapeBatch->renderRect(rect , paint);
+    // shapeBatch->end();
+
+    auto spriteBatch = purple::Engine::getRenderEngine()->getSpriteBatch();
+    spriteBatch->begin();
+    // purple::Rect colorRect = rect;
+    auto region = game->cubesTextureList[CubeColor::Gray];
+    spriteBatch->renderRegionImage(*region, rect);
+    spriteBatch->end();
 }
 
