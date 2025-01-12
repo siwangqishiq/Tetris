@@ -2,6 +2,7 @@
 
 #include "purple.h"
 #include "tetris.h"
+#include <vector>
 
 class PanelMain{
 public:

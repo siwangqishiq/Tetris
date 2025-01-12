@@ -3,6 +3,7 @@
 #include "purple_ui.h"
 #include "input/input_manager.h"
 #include "render/sprite.h"
+#include "tetris.h"
 
 extern bool isAppExist;//外部全局变量 控制退出app
 
@@ -18,7 +19,9 @@ void TetrisGame::onInit(){
     
     loadResoures();
 
-    state = Start;
+    initGridData();
+
+    state = Splash;
 }
 
 void TetrisGame::loadResoures(){
@@ -31,6 +34,27 @@ void TetrisGame::loadResoures(){
         std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size, size);
         cubesTextureList.push_back(textureRegion);
     }//end for i
+}
+
+void TetrisGame::initGridData(){
+    for(int i = 0; i < ROW_COUNT ;i++){
+        std::vector<int> rowVec;
+        for(int j = 0; j < COL_COUNT ; j++){
+            rowVec.push_back(GRID_TYPE_IDLE);
+        }//end for j
+        gridData.push_back(rowVec);
+    }//end for i
+
+    //set wall
+    for(int i = 0; i < COL_COUNT ; i++){
+        gridData[0][i] = GRID_TYPE_WALL;
+        gridData[ROW_COUNT - 1][i] = GRID_TYPE_WALL;
+    }
+
+    for(int i = 0; i < ROW_COUNT ; i++){
+        gridData[i][0] = GRID_TYPE_WALL;
+        gridData[i][COL_COUNT - 1] = GRID_TYPE_WALL;
+    }
 }
 
 void TetrisGame::onTick(){

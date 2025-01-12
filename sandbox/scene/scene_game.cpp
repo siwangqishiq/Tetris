@@ -3,11 +3,12 @@
 #include "panel/panel_main.h"
 #include "panel/panel_score.h"
 #include "panel/panel_next.h"
+#include "tetris.h"
 
 void SceneGame::init(){
     const float panelMainHeight = purple::Engine::ScreenHeight - PADDING * 2;
-    cubeSize = panelMainHeight / ROW_COUNT;
-    const float panelMainWidth = cubeSize * COL_COUNT;
+    cubeSize = panelMainHeight / TetrisGame::ROW_COUNT;
+    const float panelMainWidth = cubeSize * TetrisGame::COL_COUNT;
 
     const float panelMainLeft = purple::Engine::ScreenWidth / 2.0f - panelMainWidth / 2.0f;
     const float panelMainTop = purple::Engine::ScreenHeight - PADDING;
