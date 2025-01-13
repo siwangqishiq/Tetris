@@ -2,7 +2,13 @@
 
 class IShape : public Shape{
 public:
-    virtual std::vector<int> getPoints();
+    IShape();
+    
     virtual CubeColor getColor();
     virtual void rotate();
+
+private:
+    bool isVertical = false;
+    void updateVertPoints();
+    void updateHorPoints();
 };

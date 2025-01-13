@@ -11,7 +11,6 @@ public:
     PanelMain(TetrisGame *game,float cubeSize,
          float left , float top , float width , float height);
 
-    void initPos();
     void update();
     void render();
 

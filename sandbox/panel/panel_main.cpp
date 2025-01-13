@@ -3,6 +3,7 @@
 #include "purple_ui.h"
 #include "common.h"
 #include "shape/shape.h"
+#include "shape/ishape.h"
 
 PanelMain::PanelMain(TetrisGame *game,
     float cubeSize,
@@ -25,18 +26,25 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
     std::shared_ptr<Shape> shape = nullptr;
     switch (shapeType){
     case TETRIS_TYPE_I:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_J:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_L:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_O:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_S:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_T:
+        shape = std::make_shared<IShape>();
         break;
     case TETRIS_TYPE_Z:
+        shape = std::make_shared<IShape>();
         break;
     default:
         break;
@@ -45,7 +53,21 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
 }
 
 void PanelMain::update(){
+    if(currentShape == nullptr){
+        return;
+    }
+
+    auto points = currentShape->getPoints();
     
+    // for(int i = 0 ;i < 8 ;i++){
+    //     std::cout << points[i] << "\t";
+    // } 
+    // std::cout << std::endl;
+
+    game->gridData[points[0]][points[1]] = currentShape->getColor();
+    game->gridData[points[2]][points[3]] = currentShape->getColor();
+    game->gridData[points[4]][points[5]] = currentShape->getColor();
+    game->gridData[points[6]][points[7]] = currentShape->getColor();
 }
 
 void PanelMain::currentTetrisDown(){
@@ -72,8 +94,12 @@ void PanelMain::render(){
             if(dataType == GRID_TYPE_WALL){
                 auto region = game->cubesTextureList[CubeColor::Gray];
                 spriteBatch->renderRegionImage(*region, cubeRect);
+            }else if(dataType == GRID_TYPE_IDLE){
+                //render nothing
+            }else if(dataType > 0){
+                auto region = game->cubesTextureList[dataType];
+                spriteBatch->renderRegionImage(*region, cubeRect);
             }
-            
         }//end for j
     }//end for i
 

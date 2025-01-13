@@ -9,6 +9,9 @@ void Shape::reset(){
     dx = 0;
 }
 
-Shape::~Shape(){
+std::vector<int> Shape::getPoints(){
+    return this->points;
+}
 
+Shape::~Shape(){
 }

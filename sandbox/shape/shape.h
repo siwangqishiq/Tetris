@@ -7,11 +7,13 @@ class Shape{
 public:
     Shape();
 
-    virtual std::vector<int> getPoints() = 0;
+    
     virtual CubeColor getColor() = 0;
     virtual void rotate() = 0;
-    virtual void reset();
 
+    virtual void reset();
+    virtual std::vector<int> getPoints();
+    
     virtual ~Shape();
 protected:
     int dx;
