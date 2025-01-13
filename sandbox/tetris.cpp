@@ -20,8 +20,8 @@ void TetrisGame::onInit(){
     loadResoures();
 
     initGridData();
-
-    state = Splash;
+    
+    state = Start;
 }
 
 void TetrisGame::loadResoures(){
@@ -47,7 +47,6 @@ void TetrisGame::initGridData(){
 
     //set wall
     for(int i = 0; i < COL_COUNT ; i++){
-        gridData[0][i] = GRID_TYPE_WALL;
         gridData[ROW_COUNT - 1][i] = GRID_TYPE_WALL;
     }
 

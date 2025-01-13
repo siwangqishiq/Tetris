@@ -4,7 +4,8 @@
 
 PanelMain::PanelMain(TetrisGame *game,
     float cubeSize,
-    float left , float top , float width , float height){
+    float left , float top , 
+    float width , float height){
     
     this->game = game;
     this->cubeSize = cubeSize;
@@ -13,28 +14,21 @@ PanelMain::PanelMain(TetrisGame *game,
     rect.top = top;
     rect.width = width;
     rect.height = height;
+
+    initPos();
+}
+
+void PanelMain::initPos(){
+    for(int i = 0 ;i < TETRIS_DATA_COUNT ;i++){
+        tetrisPos.push_back(std::pair<int, int>(-1, -1));
+    }//end for i
 }
 
 void PanelMain::update(){
-
+    
 }
 
 void PanelMain::render(){
-    // auto shapeBatch = purple::Engine::getRenderEngine()->getShapeBatch();
-    // shapeBatch->begin();
-    // purple::Paint paint;
-    // paint.color = purple::ConverColorValue(purple::Color::Yellow);
-    // shapeBatch->renderRect(rect , paint);
-    // shapeBatch->end();
-
-    // auto spriteBatch = purple::Engine::getRenderEngine()->getSpriteBatch();
-    // spriteBatch->begin();
-    // // purple::Rect colorRect = rect;
-    // auto region = game->cubesTextureList[CubeColor::Gray];
-    // spriteBatch->renderRegionImage(*region, rect);
-    // spriteBatch->end();
-
-    auto region = game->cubesTextureList[CubeColor::Gray];
     float left = rect.left;
     float top = rect.top;
 
@@ -52,6 +46,7 @@ void PanelMain::render(){
 
             int dataType = this->game->gridData[i][j];
             if(dataType == GRID_TYPE_WALL){
+                auto region = game->cubesTextureList[CubeColor::Gray];
                 spriteBatch->renderRegionImage(*region, cubeRect);
             }
             

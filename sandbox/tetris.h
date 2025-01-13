@@ -5,28 +5,19 @@
 #include "scene/scene_splash.h"
 #include "scene/scene_game.h"
 #include <vector>
+#include "common.h"
 
 enum GameState{
     Splash = 0,
     Start = 1,
-    GameOver = 10
-};
 
-enum CubeColor{
-    Yellow = 0,
-    Cyan = 1,
-    Red = 2,
-    Blue = 3,
-    Green = 4,
-    Orange = 5,
-    Purple = 6,
-    Gray = 7,
-    End = 8
+    GameOver = 10
 };
 
 
 const int GRID_TYPE_IDLE = 0;
-const int GRID_TYPE_WALL = 10;
+const int GRID_TYPE_WALL = -1;
+
 
 
 class TextureImage;
@@ -53,6 +44,8 @@ public:
     std::vector<std::shared_ptr<purple::TextureImageRegion>> cubesTextureList;
 
     std::vector<std::vector<int>> gridData;
+
+    long updateDelayMils = 1000;//更新时间间隔 
 private:
     void loadResoures();
 
