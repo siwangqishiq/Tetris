@@ -19,14 +19,13 @@ const int GRID_TYPE_IDLE = 0;
 const int GRID_TYPE_WALL = -1;
 
 
-
 class TextureImage;
 class TextureImageRegion;
 
 class TetrisGame : public purple::IApp{
 public:
     const static int COL_COUNT = 12; //12列
-    const static int ROW_COUNT = 22; //22行
+    const static int ROW_COUNT = 21; //21行
 
 
     GameState state = Splash;
@@ -45,6 +44,10 @@ public:
 
     std::vector<std::vector<int>> gridData;
 
+    int getNextTetrisType();
+
+    int genNextTertisType();
+
     long updateDelayMils = 1000;//更新时间间隔 
 private:
     void loadResoures();
@@ -57,4 +60,6 @@ private:
  
     std::shared_ptr<SceneSplash> splashScene = nullptr;
     std::shared_ptr<SceneGame> gameScene = nullptr;
+
+    int nextTetris = -1;
 };

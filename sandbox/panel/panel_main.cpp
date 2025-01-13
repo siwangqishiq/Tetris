@@ -1,6 +1,8 @@
 
 #include "panel_main.h"
 #include "purple_ui.h"
+#include "common.h"
+#include "shape/shape.h"
 
 PanelMain::PanelMain(TetrisGame *game,
     float cubeSize,
@@ -15,17 +17,39 @@ PanelMain::PanelMain(TetrisGame *game,
     rect.width = width;
     rect.height = height;
 
-    initPos();
+    auto type = this->game->getNextTetrisType();
+    this->currentShape = createShapeByType(type);
 }
 
-void PanelMain::initPos(){
-    for(int i = 0 ;i < TETRIS_DATA_COUNT ;i++){
-        tetrisPos.push_back(std::pair<int, int>(-1, -1));
-    }//end for i
+std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
+    std::shared_ptr<Shape> shape = nullptr;
+    switch (shapeType){
+    case TETRIS_TYPE_I:
+        break;
+    case TETRIS_TYPE_J:
+        break;
+    case TETRIS_TYPE_L:
+        break;
+    case TETRIS_TYPE_O:
+        break;
+    case TETRIS_TYPE_S:
+        break;
+    case TETRIS_TYPE_T:
+        break;
+    case TETRIS_TYPE_Z:
+        break;
+    default:
+        break;
+    }//end switch
+    return shape;
 }
 
 void PanelMain::update(){
     
+}
+
+void PanelMain::currentTetrisDown(){
+
 }
 
 void PanelMain::render(){

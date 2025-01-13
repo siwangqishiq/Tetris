@@ -1,8 +1,5 @@
 #pragma once
 
-#include <glm/common.hpp>
-
-
 enum CubeColor{
     Yellow = 0,
     Cyan = 1,

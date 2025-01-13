@@ -4,6 +4,7 @@
 #include "input/input_manager.h"
 #include "render/sprite.h"
 #include "tetris.h"
+#include "utils.h"
 
 extern bool isAppExist;//外部全局变量 控制退出app
 
@@ -96,6 +97,18 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
             break;
     }//end switch
     return false;
+}
+
+int TetrisGame::getNextTetrisType(){
+    if(nextTetris < 0){
+        return genNextTertisType();
+    }
+    
+    return nextTetris;
+}
+
+int TetrisGame::genNextTertisType(){
+    return purple::RndInt(TETRIS_TYPE_I , TETRIS_TYPE_Z);
 }
 
 void TetrisGame::onDispose(){

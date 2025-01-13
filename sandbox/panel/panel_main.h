@@ -3,7 +3,8 @@
 #include "purple.h"
 #include "tetris.h"
 #include <vector>
-
+#include <memory>
+#include "shape/shape.h"
 
 class PanelMain{
 public:
@@ -13,12 +14,14 @@ public:
     void initPos();
     void update();
     void render();
+
+    std::shared_ptr<Shape> createShapeByType(int shapeType);
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
     purple::Rect rect;
 
-    const int TETRIS_DATA_COUNT = 4;
-    int curTetrisType = -1;
-    std::vector<std::pair<int,int>> tetrisPos;
+    std::shared_ptr<Shape> currentShape = nullptr;
+
+    void currentTetrisDown();//方块下降
 };
