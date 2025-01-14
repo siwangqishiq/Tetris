@@ -1,8 +1,9 @@
 #include "shape/ishape.h"
 
 IShape::IShape(){
-    updateHorPoints();
-    isVertical = false;
+    // updateHorPoints();
+    updateVertPoints();
+    isVertical = true;
 }
 
 void IShape::reset(){
@@ -27,13 +28,13 @@ void IShape::updateVertPoints(){
     points[0] = 0;
     points[1] = 0;
 
-    points[2] = 1;
+    points[2] = -1;
     points[3] = 0;
 
-    points[4] = 2;
+    points[4] = -2;
     points[5] = 0;
 
-    points[6] = 3;
+    points[6] = -3;
     points[7] = 0;
 }
 

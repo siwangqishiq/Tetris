@@ -40,4 +40,6 @@ private:
 
     void blitCubeToGridData();
     void clearCubeGridData();
+
+    void putGridData(std::vector<int> &points, int value);
 };

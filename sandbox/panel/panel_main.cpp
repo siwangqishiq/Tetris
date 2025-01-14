@@ -79,27 +79,28 @@ void PanelMain::blitCubeToGridData(){
     if(currentShape == nullptr){
         return;
     }
+
     auto points = currentShape->getPoints();
-    std::vector<std::vector<int>> &grid = game->gridData;
-    grid[points[0]][points[1]] = currentShape->getColor();
-    grid[points[2]][points[3]] = currentShape->getColor();
-    grid[points[4]][points[5]] = currentShape->getColor();
-    grid[points[6]][points[7]] = currentShape->getColor();
+    putGridData(points, currentShape->getColor());
     holderPoints = points;
 }
 
 void PanelMain::clearCubeGridData(){
+    putGridData(holderPoints , GRID_TYPE_IDLE);
+}
+
+ void PanelMain::putGridData(std::vector<int> &points , int value){
     std::vector<std::vector<int>> &grid = game->gridData;
-    const int len = holderPoints.size() / 2;
+    const int len = points.size() / 2;
     for(int i = 0 ; i < len; i++){
-        const int row = holderPoints[2 * i + 0];
-        const int col = holderPoints[2 * i + 1];
+        const int row = points[2 * i + 0];
+        const int col = points[2 * i + 1];
         if(row >= 0 && row < TetrisGame::ROW_COUNT 
             && col >= 0 && col < TetrisGame::COL_COUNT){
-            grid[row][col] = GRID_TYPE_IDLE;
+            grid[row][col] = value;
         }
     } //end for i
-}
+ }
 
 void PanelMain::render(){
     float left = rect.left;
