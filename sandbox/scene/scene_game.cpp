@@ -36,6 +36,12 @@ void SceneGame::render(){
     panelScore->render();
 }
 
+void SceneGame::onInputEvent(purple::InputEvent &event){
+    if(panelMain != nullptr){
+        panelMain->onInputEvent(event);
+    }
+}
+
 void SceneGame::dispose(){
 
 }

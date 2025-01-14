@@ -6,7 +6,7 @@ public:
     
     virtual CubeColor getColor();
     virtual void rotate();
-
+    virtual void reset();
 private:
     bool isVertical = false;
     void updateVertPoints();

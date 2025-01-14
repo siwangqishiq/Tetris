@@ -21,6 +21,8 @@ public:
     void render();
 
     void dispose();
+
+    void onInputEvent(purple::InputEvent &event);
 private:
     TetrisGame *game = nullptr;
 

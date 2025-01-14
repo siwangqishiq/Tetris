@@ -13,11 +13,15 @@ public:
 
     virtual void reset();
     virtual std::vector<int> getPoints();
+
+    virtual void moveLeft();
+    virtual void moveRight();
+    virtual void moveDown();
     
     virtual ~Shape();
 protected:
-    int dx;
-    int dy;
+    int dy = 0; //行偏移
+    int dx = 0; //列偏移
 
     std::vector<int> points = {0,0,0,0,0,0,0,0};
 };

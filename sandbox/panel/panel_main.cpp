@@ -17,9 +17,6 @@ PanelMain::PanelMain(TetrisGame *game,
     rect.top = top;
     rect.width = width;
     rect.height = height;
-
-    auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(type);
 }
 
 std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
@@ -53,25 +50,55 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
 }
 
 void PanelMain::update(){
-    if(currentShape == nullptr){
-        return;
+    if(state == UNSET){
+        state = GenCube;
+    }else if(state == GenCube){
+        genNewCube();
+        blitCubeToGridData();
+        state = CubeDown;
+    }else if(state == CubeDown){
+        blitCubeToGridData();
+    }else if(state == CubeDismiss){
+
     }
+}
 
-    auto points = currentShape->getPoints();
-    
-    // for(int i = 0 ;i < 8 ;i++){
-    //     std::cout << points[i] << "\t";
-    // } 
-    // std::cout << std::endl;
-
-    game->gridData[points[0]][points[1]] = currentShape->getColor();
-    game->gridData[points[2]][points[3]] = currentShape->getColor();
-    game->gridData[points[4]][points[5]] = currentShape->getColor();
-    game->gridData[points[6]][points[7]] = currentShape->getColor();
+void PanelMain::genNewCube(){
+    auto type = this->game->getNextTetrisType();
+    this->currentShape = createShapeByType(type);
+    this->currentShape->reset();
 }
 
 void PanelMain::currentTetrisDown(){
 
+}
+
+void PanelMain::blitCubeToGridData(){
+    clearCubeGridData();
+
+    if(currentShape == nullptr){
+        return;
+    }
+    auto points = currentShape->getPoints();
+    std::vector<std::vector<int>> &grid = game->gridData;
+    grid[points[0]][points[1]] = currentShape->getColor();
+    grid[points[2]][points[3]] = currentShape->getColor();
+    grid[points[4]][points[5]] = currentShape->getColor();
+    grid[points[6]][points[7]] = currentShape->getColor();
+    holderPoints = points;
+}
+
+void PanelMain::clearCubeGridData(){
+    std::vector<std::vector<int>> &grid = game->gridData;
+    const int len = holderPoints.size() / 2;
+    for(int i = 0 ; i < len; i++){
+        const int row = holderPoints[2 * i + 0];
+        const int col = holderPoints[2 * i + 1];
+        if(row >= 0 && row < TetrisGame::ROW_COUNT 
+            && col >= 0 && col < TetrisGame::COL_COUNT){
+            grid[row][col] = GRID_TYPE_IDLE;
+        }
+    } //end for i
 }
 
 void PanelMain::render(){
@@ -104,5 +131,22 @@ void PanelMain::render(){
     }//end for i
 
     spriteBatch->end();
+}
+
+void PanelMain::onInputEvent(purple::InputEvent &event){
+    if(currentShape == nullptr){
+        return;
+    }
+
+    if(event.code == purple::CODE_KEY_LEFT
+        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ //move left
+        currentShape->moveLeft();
+    }else if(event.code == purple::CODE_KEY_RIGHT 
+        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move right
+        currentShape->moveRight();
+    }else if(event.code == purple::CODE_KEY_DOWN
+        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move down
+        currentShape->moveDown();
+    }
 }
 

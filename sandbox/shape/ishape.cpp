@@ -5,6 +5,11 @@ IShape::IShape(){
     isVertical = false;
 }
 
+void IShape::reset(){
+    dx = 2;
+    dy = 0;
+}
+
 CubeColor IShape::getColor(){
     return CubeColor::Cyan;
 }

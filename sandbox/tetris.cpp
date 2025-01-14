@@ -22,7 +22,7 @@ void TetrisGame::onInit(){
 
     initGridData();
     
-    state = Start;
+    state = Splash;
 }
 
 void TetrisGame::loadResoures(){
@@ -90,6 +90,7 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
             splashScene->onInputEvent(event);
             break;
         case Start:
+            gameScene->onInputEvent(event);
             break;
         case GameOver:
             break;

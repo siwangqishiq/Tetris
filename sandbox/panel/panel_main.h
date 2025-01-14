@@ -6,6 +6,13 @@
 #include <memory>
 #include "shape/shape.h"
 
+enum PanelMainState{
+    UNSET = -1,
+    GenCube = 1, //生成cube
+    CubeDown = 2, // 方块下降
+    CubeDismiss = 3,//方块消失
+};
+
 class PanelMain{
 public:
     PanelMain(TetrisGame *game,float cubeSize,
@@ -13,6 +20,9 @@ public:
 
     void update();
     void render();
+    void onInputEvent(purple::InputEvent &event);
+
+    void genNewCube();
 
     std::shared_ptr<Shape> createShapeByType(int shapeType);
 private:
@@ -20,7 +30,14 @@ private:
     float cubeSize;
     purple::Rect rect;
 
+    PanelMainState state = UNSET;
+
     std::shared_ptr<Shape> currentShape = nullptr;
 
+    std::vector<int> holderPoints ={-1,-1,-1,-1,-1,-1,-1,-1};
+
     void currentTetrisDown();//方块下降
+
+    void blitCubeToGridData();
+    void clearCubeGridData();
 };
