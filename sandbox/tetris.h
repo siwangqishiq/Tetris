@@ -27,8 +27,11 @@ public:
     const static int COL_COUNT = 12; //12列
     const static int ROW_COUNT = 21; //21行
 
-
     GameState state = Splash;
+
+    std::shared_ptr<purple::TextureImage> cubesTexture;
+    std::shared_ptr<SceneSplash> splashScene = nullptr;
+    std::shared_ptr<SceneGame> gameScene = nullptr;
 
     virtual void onInit() override;
     virtual void onTick() override;
@@ -55,11 +58,6 @@ private:
     void initGridData();
 
     std::string TAG = "TetrisGame";
-
-    std::shared_ptr<purple::TextureImage> cubesTexture;
- 
-    std::shared_ptr<SceneSplash> splashScene = nullptr;
-    std::shared_ptr<SceneGame> gameScene = nullptr;
 
     int nextTetris = -1;
 };

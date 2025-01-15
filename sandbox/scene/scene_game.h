@@ -9,10 +9,14 @@ class PanelScore;
 
 class SceneGame{
 public:
+    std::shared_ptr<PanelMain> panelMain;
+    
     SceneGame(TetrisGame *_game):game(_game){
     }
 
     const static int PADDING = 10;
+
+    float cubeSize = 0.0f; 
 
     void init();
 
@@ -26,9 +30,6 @@ public:
 private:
     TetrisGame *game = nullptr;
 
-    float cubeSize = 0.0f; 
-
-    std::shared_ptr<PanelMain> panelMain;
     std::shared_ptr<PanelScore> panelScore;
     std::shared_ptr<PanelNext> panelNext;
 };

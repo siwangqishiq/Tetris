@@ -25,21 +25,16 @@ public:
     void genNewCube();
 
     std::shared_ptr<Shape> createShapeByType(int shapeType);
+    purple::Rect rect;
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
-    purple::Rect rect;
 
     PanelMainState state = UNSET;
 
     std::shared_ptr<Shape> currentShape = nullptr;
 
-    std::vector<int> holderPoints ={-1,-1,-1,-1,-1,-1,-1,-1};
-
     void currentTetrisDown();//方块下降
 
-    void blitCubeToGridData();
-    void clearCubeGridData();
-
-    void putGridData(std::vector<int> &points, int value);
+    void renderGrids();
 };

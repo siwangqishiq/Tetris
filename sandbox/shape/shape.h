@@ -3,26 +3,28 @@
 #include <vector>
 #include "common.h"
 
+class TetrisGame;
+
 class Shape{
 public:
-    Shape();
-
+    Shape(TetrisGame *game);
     
-    virtual CubeColor getColor() = 0;
-    virtual void rotate() = 0;
-
+    virtual CubeColor getColor();
+    virtual void rotate();
     virtual void reset();
-    virtual std::vector<int> getPoints();
-
+    virtual void render();
+    
     virtual void moveLeft();
     virtual void moveRight();
     virtual void moveDown();
+    virtual void moveUp();
     
     virtual ~Shape();
-protected:
-    int dy = 0; //行偏移
-    int dx = 0; //列偏移
 
-    std::vector<int> points = {0,0,0,0,0,0,0,0};
+    std::vector<int>& getPoints();
+protected:
+    std::vector<int> points = {0,0, 0,0, 0,0, 0,0}; //行 ,列
+    TetrisGame *game = nullptr;
+private:
 };
 

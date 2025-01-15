@@ -1,49 +1,65 @@
 
 #include "shape/shape.h"
 #include <iostream>
+#include "purple.h"
+#include "tetris.h"
+#include "scene/scene_game.h"
+#include "panel/panel_main.h"
+#include <memory>
 
-Shape::Shape(){
+Shape::Shape(TetrisGame *game){
+    this->game = game;
+}
+
+CubeColor Shape::getColor(){
+    return CubeColor::Gray;
+}
+
+void Shape::rotate(){
+
 }
 
 void Shape::reset(){
-    dy = 0;
-    dx = 0;
 }
 
 void Shape::moveLeft(){
-    // std::cout << "moveLeft " << std::endl;
-    dx--;
 }
 
 void Shape::moveRight(){
-    // std::cout << "moveRight " << std::endl;
-    dx++;
 }
 
 void Shape::moveDown(){
-    // std::cout << "moveDown " << std::endl;
-    dy++;
 }
 
-std::vector<int> Shape::getPoints(){
-    const int size = points.size();
-    std::vector<int> result(size);
-    // for(auto &v : points){
-    //     std::cout << v << " ";
-    // }
-    // std::cout << std::endl;
-    for(int i = 0, len = (size >> 1) ; i < len ; i++){
-        // std::cout << "--> " << points[2 * i + 0] + dRow << std::endl;
-        result[2 * i + 0] = points[2 * i + 0] + dy;
-        result[2 * i + 1] = points[2 * i + 1] + dx;
-    }//end for i
+void Shape::moveUp(){
+}
 
-    // for(auto &v : result){
-    //     std::cout << v << " ";
-    // }
-    // std::cout << std::endl;
-    
-    return result;
+void Shape::render(){
+    const float cubeSize = this->game->gameScene->cubeSize;
+    auto gamePanelRect = this->game->gameScene->panelMain->rect;
+
+    purple::Rect cubeRect;
+    cubeRect.width = cubeSize;
+    cubeRect.height = cubeSize;
+
+    auto spriteBatch = purple::Engine::getRenderEngine()->getSpriteBatch();
+    spriteBatch->begin();
+    const int len = this->points.size() / 2;
+    for(int i = 0 ; i < len ;i++){
+        const int row = points[2*i + 0];
+        const int col = points[2*i + 1];
+
+        cubeRect.left = gamePanelRect.left + col * cubeSize;
+        cubeRect.top = gamePanelRect.top - row * cubeSize;
+
+        auto region = game->cubesTextureList[getColor()];
+        spriteBatch->renderRegionImage(*region, cubeRect);
+    }//end for i
+    spriteBatch->end();
+}
+
+std::vector<int>& Shape::getPoints(){
+    return points;
 }
 
 Shape::~Shape(){

@@ -23,25 +23,25 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
     std::shared_ptr<Shape> shape = nullptr;
     switch (shapeType){
     case TETRIS_TYPE_I:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_J:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_L:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_O:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_S:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_T:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_Z:
-        shape = std::make_shared<IShape>();
+        shape = std::make_shared<IShape>(game);
         break;
     default:
         break;
@@ -54,12 +54,10 @@ void PanelMain::update(){
         state = GenCube;
     }else if(state == GenCube){
         genNewCube();
-        blitCubeToGridData();
         state = CubeDown;
     }else if(state == CubeDown){
-        blitCubeToGridData();
-    }else if(state == CubeDismiss){
 
+    }else if(state == CubeDismiss){
     }
 }
 
@@ -73,36 +71,16 @@ void PanelMain::currentTetrisDown(){
 
 }
 
-void PanelMain::blitCubeToGridData(){
-    clearCubeGridData();
-
-    if(currentShape == nullptr){
-        return;
-    }
-
-    auto points = currentShape->getPoints();
-    putGridData(points, currentShape->getColor());
-    holderPoints = points;
-}
-
-void PanelMain::clearCubeGridData(){
-    putGridData(holderPoints , GRID_TYPE_IDLE);
-}
-
- void PanelMain::putGridData(std::vector<int> &points , int value){
-    std::vector<std::vector<int>> &grid = game->gridData;
-    const int len = points.size() / 2;
-    for(int i = 0 ; i < len; i++){
-        const int row = points[2 * i + 0];
-        const int col = points[2 * i + 1];
-        if(row >= 0 && row < TetrisGame::ROW_COUNT 
-            && col >= 0 && col < TetrisGame::COL_COUNT){
-            grid[row][col] = value;
-        }
-    } //end for i
- }
-
 void PanelMain::render(){
+    renderGrids();
+
+    if(currentShape != nullptr){
+        currentShape->render();
+    }
+}
+
+
+void PanelMain::renderGrids(){
     float left = rect.left;
     float top = rect.top;
 
@@ -124,7 +102,7 @@ void PanelMain::render(){
                 spriteBatch->renderRegionImage(*region, cubeRect);
             }else if(dataType == GRID_TYPE_IDLE){
                 //render nothing
-            }else if(dataType > 0){
+            }else if(dataType > 0){ // render color cube
                 auto region = game->cubesTextureList[dataType];
                 spriteBatch->renderRegionImage(*region, cubeRect);
             }
@@ -148,6 +126,12 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
     }else if(event.code == purple::CODE_KEY_DOWN
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move down
         currentShape->moveDown();
+    }else if(event.code == purple::CODE_KEY_UP
+        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move up
+        currentShape->moveUp();
+    }else if(event.code == purple::CODE_KEY_ENTER
+        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // roate
+        currentShape->rotate();
     }
 }
 
