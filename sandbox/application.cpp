@@ -28,14 +28,19 @@ void Application::init(){
     purple::Log::i(TAG , "Application init");
     glfwInit();
 
-    #ifdef __ARM_ARCH //for 树梅派
+    #if defined(__APPLE__) && defined(__arm64__) //apple m系芯片
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    #elifdef __ARM_ARCH //for 树梅派
     glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE);
     #else
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6 );
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
@@ -50,6 +55,12 @@ void Application::init(){
 
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     window = glfwCreateWindow(screenWidth, screenHeight, "run", mointor, nullptr);
+    if(window == nullptr){
+        char *buf;
+        glfwGetError((const char **)&buf);
+        std::cerr << "create window error " << buf << std::endl;
+        return;
+    }
     
     glfwSetCharCallback(window , [](GLFWwindow* window_, unsigned int codepoint){
         // std::cout << "ime:" << codepoint << std::endl;
