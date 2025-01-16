@@ -3,13 +3,15 @@
 #include "tetris.h"
 
 void IShape::reset(){
+    updateVertPoints();
+    isVertical = false;
 }
 
 CubeColor IShape::getColor(){
     return CubeColor::Cyan;
 }
 
-void IShape::rotate(){
+void IShape::onRotate(){
     isVertical = !isVertical;
     if(isVertical){
         updateVertPoints();
@@ -18,7 +20,7 @@ void IShape::rotate(){
     }
 }
 
-void IShape::moveLeft(){
+void IShape::onMoveLeft(){
     const int len = points.size() / 2;
     for(int i = 0 ; i < len ; i++){
         int col = points[2 * i + 1];
@@ -26,7 +28,7 @@ void IShape::moveLeft(){
     }//end for i
 }
 
-void IShape::moveRight(){
+void IShape::onMoveRight(){
     const int len = points.size() / 2;
     for(int i = 0 ; i < len ; i++){
         int col = points[2 * i + 1];
@@ -34,7 +36,7 @@ void IShape::moveRight(){
     }//end for i
 }
 
-void IShape::moveDown(){
+void IShape::onMoveDown(){
     const int len = points.size() / 2;
     for(int i = 0 ; i < len ; i++){
         int row = points[2 * i];

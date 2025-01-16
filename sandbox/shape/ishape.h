@@ -4,18 +4,16 @@ class TetrisGame;
 class IShape : public Shape{
 public:
     IShape(TetrisGame *game_):Shape(game_){
-        // updateHorPoints();
-        updateVertPoints();
-        isVertical = false;
     }
     
     virtual CubeColor getColor();
-    virtual void rotate();
-    virtual void reset();
 
-    virtual void moveLeft();
-    virtual void moveRight();
-    virtual void moveDown();
+    virtual void reset();
+    virtual void onRotate();
+
+    virtual void onMoveLeft();
+    virtual void onMoveRight();
+    virtual void onMoveDown();
 
 private:
     bool isVertical = false;

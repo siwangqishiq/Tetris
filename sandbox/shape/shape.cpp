@@ -15,23 +15,42 @@ CubeColor Shape::getColor(){
     return CubeColor::Gray;
 }
 
-void Shape::rotate(){
-
-}
-
 void Shape::reset(){
 }
 
 void Shape::moveLeft(){
+    onMoveLeft();
 }
 
 void Shape::moveRight(){
+    onMoveRight();
 }
 
 void Shape::moveDown(){
+    onMoveDown();
 }
 
 void Shape::moveUp(){
+    onMoveUp();
+}
+
+void Shape::rotate(){
+    onRotate();
+}
+
+void Shape::onMoveLeft(){
+}
+
+void Shape::onMoveRight(){
+}
+
+void Shape::onMoveDown(){
+}
+
+void Shape::onMoveUp(){
+}
+
+void Shape::onRotate(){
 }
 
 void Shape::render(){

@@ -10,14 +10,21 @@ public:
     Shape(TetrisGame *game);
     
     virtual CubeColor getColor();
-    virtual void rotate();
+    
     virtual void reset();
     virtual void render();
     
-    virtual void moveLeft();
-    virtual void moveRight();
-    virtual void moveDown();
-    virtual void moveUp();
+    void rotate();
+    void moveLeft();
+    void moveRight();
+    void moveDown();
+    void moveUp();
+
+    virtual void onRotate();
+    virtual void onMoveLeft();
+    virtual void onMoveRight();
+    virtual void onMoveUp();
+    virtual void onMoveDown();
     
     virtual ~Shape();
 
