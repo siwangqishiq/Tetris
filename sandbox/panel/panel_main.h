@@ -53,4 +53,6 @@ private:
     void dismissGridRows();
 
     void checkIsGameOver();
+
+    void addScores();
 };

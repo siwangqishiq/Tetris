@@ -140,7 +140,9 @@ bool Shape::checkPointsOverlayGrid(std::vector<int> &inputPoints){
     for(int i = 0 ; i < len; i++){
         const int row = inputPoints[(i << 1)];
         const int col = inputPoints[(i << 1) + 1];
-        if(game->gridData[row][col] > 0){
+        
+        if(Shape::checkRowColInRange(row, col)
+            && game->gridData[row][col] > 0){
             return true;
         }
     }//end for i

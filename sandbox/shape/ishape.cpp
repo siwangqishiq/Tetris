@@ -5,7 +5,6 @@
 void IShape::reset(){
     updateHorPoints();
     isVertical = false;
-
     // updateVertPoints();
     // isVertical = true;
 }
@@ -21,26 +20,37 @@ void IShape::onRotate(){
     int midPointCol = rotatePoints[2 * 2 + 1];
 
     if(isVertical){//垂直形态 ->水平
-        rotatePoints[0*2] = midPointRow - 2;
-        rotatePoints[0*2 + 1] = midPointCol;
-
-        rotatePoints[1*2] = midPointRow - 1;
-        rotatePoints[1*2 + 1] = midPointCol;
-
-        rotatePoints[3*2] = midPointRow + 1;
-        rotatePoints[3*2 + 1] = midPointCol;
-    }else{//水平形态 -> 垂直
+        // std::cout << "hor->ver rotaet 0" << std::endl;
         rotatePoints[0*2] = midPointRow;
         rotatePoints[0*2 + 1] = midPointCol - 2;
 
+        // std::cout << "hor->ver rotaet 1" << std::endl;
         rotatePoints[1*2] = midPointRow;
         rotatePoints[1*2 + 1] = midPointCol - 1;
 
+        // std::cout << "hor->ver rotaet 3" << std::endl;
         rotatePoints[3*2] = midPointRow;
         rotatePoints[3*2 + 1] = midPointCol + 1;
+    }else{//水平形态 -> 垂直
+        // std::cout << "hor->ver rotaet end" << std::endl;
+
+        std::cout << "ver->hor rotaet 0" << std::endl;
+        rotatePoints[0*2] = midPointRow - 2;
+        rotatePoints[0*2 + 1] = midPointCol;
+
+        std::cout << "ver->hor rotaet 1" << std::endl;
+        rotatePoints[1*2] = midPointRow - 1;
+        rotatePoints[1*2 + 1] = midPointCol;
+        
+        std::cout << "ver->hor rotaet 3" << std::endl;
+        rotatePoints[3*2] = midPointRow + 1;
+        rotatePoints[3*2 + 1] = midPointCol;
+
+        std::cout << "ver->hor rotaet 0" << std::endl;
     }
 
     if(checkPointsOverlayGrid(rotatePoints)){
+        std::cout << "point overlay grid data" << std::endl;
         return;
     }
 

@@ -4,6 +4,7 @@
 #include "common.h"
 #include "shape/shape.h"
 #include "shape/ishape.h"
+#include "panel/panel_score.h"
 
 PanelMain::PanelMain(TetrisGame *game,
     float cubeSize,
@@ -74,6 +75,8 @@ void PanelMain::update(){
         }
     }else if(state == CubeDismiss){
         dismissGridRows();
+
+        
         state = GenCube;
     }else if(state == GameOver){
         game->state = GameState::Splash;
@@ -187,6 +190,36 @@ void PanelMain::dismissGridRows(){
     }//end for i
 
     game->gridData = copyGrids;
+
+    addScores();
+    willDismissRows.clear();
+}
+
+void PanelMain::addScores(){
+    const int dismissRowCount = willDismissRows.size();
+
+    int addScore = 0;
+    switch(dismissRowCount){
+        case 1:
+            addScore = 10;
+            break;
+        case 2:
+            addScore = 22;
+            break;
+        case 3:
+            addScore = 35;
+            break;
+        case 4:
+            addScore = 50;
+            break;
+        default:
+            break;
+    }//end switch
+
+    auto panelScore = game->gameScene->getPanelScore();
+    if(panelScore != nullptr){
+        panelScore->addScore(addScore);
+    }
 }
 
 void PanelMain::render(){
@@ -236,13 +269,16 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
     }
 
     if(event.code == purple::CODE_KEY_LEFT
-        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ //move left
+        && (event.action == purple::EVENT_ACTION_KEYBOARD_PRESS 
+            || event.action == purple::EVENT_ACTION_KEYBOARD_REPEAT)){ //move left
         currentShape->moveLeft();
     }else if(event.code == purple::CODE_KEY_RIGHT 
-        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move right
+        && (event.action == purple::EVENT_ACTION_KEYBOARD_PRESS
+            || event.action == purple::EVENT_ACTION_KEYBOARD_REPEAT)){ // move right
         currentShape->moveRight();
     }else if(event.code == purple::CODE_KEY_DOWN
-        && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move down
+        && (event.action == purple::EVENT_ACTION_KEYBOARD_PRESS
+            || event.action == purple::EVENT_ACTION_KEYBOARD_REPEAT)){ // move down
         currentShape->moveDown();
     }else if(event.code == purple::CODE_KEY_UP
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move up

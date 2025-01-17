@@ -27,6 +27,10 @@ public:
     void dispose();
 
     void onInputEvent(purple::InputEvent &event);
+
+    std::shared_ptr<PanelScore> getPanelScore(){
+        return panelScore;
+    }
 private:
     TetrisGame *game = nullptr;
 
