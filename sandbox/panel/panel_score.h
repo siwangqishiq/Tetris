@@ -10,6 +10,10 @@ public:
     void update();
 
     void render();
+
+    void addScore(int addScore);
+
+    void resetScore();
 private:
     TetrisGame *game = nullptr;
     float left;
@@ -18,4 +22,5 @@ private:
     float fontSize;
 
     int score = 0;
+    int targerScore = 0;
 };

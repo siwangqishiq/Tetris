@@ -37,6 +37,7 @@ void SceneSplash::pressEnterKey(){
     purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
 
     if(currentMenuIndex == MENU_START_GAME){
+        this->currentMenuIndex = 0;
         game->updateState(GameState::Start);
     }else if(currentMenuIndex == MENU_EXIT_GAME){
         game->exitGame();

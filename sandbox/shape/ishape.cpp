@@ -3,8 +3,11 @@
 #include "tetris.h"
 
 void IShape::reset(){
-    updateVertPoints();
+    updateHorPoints();
     isVertical = false;
+
+    // updateVertPoints();
+    // isVertical = true;
 }
 
 CubeColor IShape::getColor(){
@@ -12,35 +15,72 @@ CubeColor IShape::getColor(){
 }
 
 void IShape::onRotate(){
-    isVertical = !isVertical;
-    if(isVertical){
-        updateVertPoints();
-    }else{
-        updateHorPoints();
+    std::vector<int> rotatePoints = points;
+
+    int midPointRow = rotatePoints[2 * 2];
+    int midPointCol = rotatePoints[2 * 2 + 1];
+
+    if(isVertical){//垂直形态 ->水平
+        rotatePoints[0*2] = midPointRow - 2;
+        rotatePoints[0*2 + 1] = midPointCol;
+
+        rotatePoints[1*2] = midPointRow - 1;
+        rotatePoints[1*2 + 1] = midPointCol;
+
+        rotatePoints[3*2] = midPointRow + 1;
+        rotatePoints[3*2 + 1] = midPointCol;
+    }else{//水平形态 -> 垂直
+        rotatePoints[0*2] = midPointRow;
+        rotatePoints[0*2 + 1] = midPointCol - 2;
+
+        rotatePoints[1*2] = midPointRow;
+        rotatePoints[1*2 + 1] = midPointCol - 1;
+
+        rotatePoints[3*2] = midPointRow;
+        rotatePoints[3*2 + 1] = midPointCol + 1;
     }
+
+    if(checkPointsOverlayGrid(rotatePoints)){
+        return;
+    }
+
+    points = rotatePoints;
+    isVertical = !isVertical;
 }
 
 void IShape::onMoveLeft(){
-    const int len = points.size() / 2;
+    if(!checkAllCubesCanMoveLeft()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
     for(int i = 0 ; i < len ; i++){
-        int col = points[2 * i + 1];
-        points[2 * i + 1] = col - 1;
+        int col = points[(i << 1) + 1];
+        points[(i << 1) + 1] = col - 1;
     }//end for i
 }
 
 void IShape::onMoveRight(){
-    const int len = points.size() / 2;
+    if(!checkAllCubesCanMoveRight()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
     for(int i = 0 ; i < len ; i++){
-        int col = points[2 * i + 1];
-        points[2 * i + 1] = col + 1;
+        int col = points[ (i << 1) + 1];
+        points[(i << 1) + 1] = col + 1;
     }//end for i
 }
 
 void IShape::onMoveDown(){
-    const int len = points.size() / 2;
+    if(!checkAllCubesCanMoveDown()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
     for(int i = 0 ; i < len ; i++){
-        int row = points[2 * i];
-        points[2 * i] = row + 1;
+        int row = points[(i << 1)];
+        points[(i << 1)] = row + 1;
     }//end for i
 }
 
@@ -60,15 +100,15 @@ void IShape::updateVertPoints(){
 
 void IShape::updateHorPoints(){
     points[0] = 0;
-    points[1] = 1;
+    points[1] = 3;
 
     points[2] = 0;
-    points[3] = 2;
+    points[3] = 4;
 
     points[4] = 0;
-    points[5] = 3;
+    points[5] = 5;
 
     points[6] = 0;
-    points[7] = 4;
+    points[7] = 6;
 }
 

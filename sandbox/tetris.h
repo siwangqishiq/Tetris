@@ -10,13 +10,11 @@
 enum GameState{
     Splash = 0,
     Start = 1,
-
-    GameOver = 10
 };
 
 
 const int GRID_TYPE_IDLE = 0;
-const int GRID_TYPE_WALL = -1;
+const int GRID_TYPE_WALL = 100;
 
 
 class TextureImage;
@@ -51,7 +49,10 @@ public:
 
     int genNextTertisType();
 
+    virtual ~TetrisGame();
+
     long updateDelayMils = 1000;//更新时间间隔 
+    long deltaTimeMils = -1;
 private:
     void loadResoures();
 
@@ -60,4 +61,8 @@ private:
     std::string TAG = "TetrisGame";
 
     int nextTetris = -1;
+
+    void updateTime();
+
+    long priorFrameTimeMils = 0;
 };

@@ -28,6 +28,10 @@ void Shape::moveRight(){
 
 void Shape::moveDown(){
     onMoveDown();
+
+    if(!checkAllCubesCanMoveDown()){ //不可下降
+        game->gameScene->panelMain->blitTetrisToGrid();
+    }
 }
 
 void Shape::moveUp(){
@@ -51,6 +55,56 @@ void Shape::onMoveUp(){
 }
 
 void Shape::onRotate(){
+}
+
+bool Shape::checkAllCubesCanMoveLeft(){
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len; i++){
+        const int row = points[(i << 1)];
+        const int col = points[(i << 1) + 1];
+        if(checkRowColInRange(row, col - 1)){
+            if(this->game->gridData[row][col - 1] > 0){
+                return false;
+            }
+        }
+    }//end for i
+    return true;
+}
+
+bool Shape::checkAllCubesCanMoveRight(){
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len; i++){
+        const int row = points[(i << 1)];
+        const int col = points[(i << 1) + 1];
+        if(checkRowColInRange(row, col + 1)){
+            // std::cout << "row : " << row << " col :" << (col+1) 
+            //     << "  data= " << this->game->gridData[row][col + 1]
+            //     << std::endl;
+            if(this->game->gridData[row][col + 1] > 0){
+                return false;
+            }
+        }
+    }//end for i
+    return true;
+}
+
+bool Shape::checkAllCubesCanMoveDown(){
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len; i++){
+        const int row = points[(i << 1)];
+        const int col = points[(i << 1) + 1];
+        if(checkRowColInRange(row + 1, col)){
+            if(this->game->gridData[row + 1][col] > 0){
+                return false;
+            }
+        }
+    }//end for i
+    return true;
+}
+
+bool Shape::checkRowColInRange(int row , int col){
+    return row >= 0 && row < TetrisGame::ROW_COUNT 
+        && col >=0 && col < TetrisGame::COL_COUNT;
 }
 
 void Shape::render(){
@@ -79,6 +133,18 @@ void Shape::render(){
 
 std::vector<int>& Shape::getPoints(){
     return points;
+}
+
+bool Shape::checkPointsOverlayGrid(std::vector<int> &inputPoints){
+    const int len = inputPoints.size() >> 1;
+    for(int i = 0 ; i < len; i++){
+        const int row = inputPoints[(i << 1)];
+        const int col = inputPoints[(i << 1) + 1];
+        if(game->gridData[row][col] > 0){
+            return true;
+        }
+    }//end for i
+    return false;
 }
 
 Shape::~Shape(){

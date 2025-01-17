@@ -8,6 +8,10 @@
 
 extern bool isAppExist;//外部全局变量 控制退出app
 
+TetrisGame::~TetrisGame(){
+    purple::Log::i("TetrisGame", "~TetrisGame");
+}
+
 void TetrisGame::onInit(){
     splashScene = std::make_shared<SceneSplash>(this);
     gameScene = std::make_shared<SceneGame>(this);
@@ -22,7 +26,14 @@ void TetrisGame::onInit(){
 
     initGridData();
     
-    state = Splash;
+    state = GameState::Start;
+    priorFrameTimeMils = purple::currentTimeMillis();
+}
+
+void TetrisGame::updateTime(){
+    long currentTime = purple::currentTimeMillis();
+    deltaTimeMils =  currentTime - priorFrameTimeMils;
+    priorFrameTimeMils = currentTime;
 }
 
 void TetrisGame::loadResoures(){
@@ -58,6 +69,7 @@ void TetrisGame::initGridData(){
 }
 
 void TetrisGame::onTick(){
+    updateTime();
     switch(state){
         case Splash:
             splashScene->update();
@@ -67,11 +79,11 @@ void TetrisGame::onTick(){
             gameScene->update();
             gameScene->render();
             break;
-        case GameOver:
-            break;
         default:
             break;
     }//end switch
+
+
 }
 
 void TetrisGame::updateState(GameState newState){
@@ -91,8 +103,6 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
             break;
         case Start:
             gameScene->onInputEvent(event);
-            break;
-        case GameOver:
             break;
         default:
             break;

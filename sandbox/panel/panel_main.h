@@ -10,7 +10,9 @@ enum PanelMainState{
     UNSET = -1,
     GenCube = 1, //生成cube
     CubeDown = 2, // 方块下降
-    CubeDismiss = 3,//方块消失
+    Blit = 3,// 下降结束 同步数据到grid
+    GameOver = 9,//游戏结束
+    CubeDismiss = 10,//方块消失
 };
 
 class PanelMain{
@@ -24,17 +26,31 @@ public:
 
     void genNewCube();
 
+    void blitTetrisToGrid();
+
     std::shared_ptr<Shape> createShapeByType(int shapeType);
     purple::Rect rect;
+
+    void onGameOver();
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
 
     PanelMainState state = UNSET;
 
+    long timeRecord = 0;
+
     std::shared_ptr<Shape> currentShape = nullptr;
 
-    void currentTetrisDown();//方块下降
+    std::vector<int> willDismissRows; //待消失行
 
+    void currentTetrisDown();//方块下降
+    
     void renderGrids();
+
+    void checkDismissGrid();
+
+    void dismissGridRows();
+
+    void checkIsGameOver();
 };

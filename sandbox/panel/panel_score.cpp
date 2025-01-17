@@ -16,7 +16,20 @@ PanelScore::PanelScore(TetrisGame *game, float fontSize, float left
 
 void PanelScore::update(){
     // score++;
+    if(score < targerScore){
+        score++;
+    }
 }
+
+void PanelScore::addScore(int addScore){
+    targerScore += addScore;
+}
+
+void PanelScore::resetScore(){
+    targerScore = 0;
+    score = 0;
+}
+
 
 void PanelScore::render(){
     purple::TextPaint textPaint;
