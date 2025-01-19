@@ -115,9 +115,17 @@ void PanelMain::onGameOver(){
 
 void PanelMain::currentTetrisDown(){
     purple::Log::w("Tetris" , "currentTetris Down");
-    
+
     if(currentShape != nullptr){
-        currentShape->moveDown();
+        if(!currentShape->checkAllCubesCanMoveDown()){ //不可下降
+            game->gameScene->panelMain->blitTetrisToGrid();
+            return;
+        }else{
+            currentShape->moveDown();
+        }
+        // if(!currentShape->checkAllCubesCanMoveDown()){ //不可下降
+        //     game->gameScene->panelMain->blitTetrisToGrid();
+        // }
     }
 }
 

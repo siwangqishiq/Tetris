@@ -28,10 +28,6 @@ void Shape::moveRight(){
 
 void Shape::moveDown(){
     onMoveDown();
-
-    if(!checkAllCubesCanMoveDown()){ //不可下降
-        game->gameScene->panelMain->blitTetrisToGrid();
-    }
 }
 
 void Shape::moveUp(){

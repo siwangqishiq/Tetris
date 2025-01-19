@@ -20,6 +20,8 @@ private:
     float width;
     float top;
     float fontSize;
+    float biggerFontSize;
+    float curFontSize;
 
     int score = 0;
     int targerScore = 0;

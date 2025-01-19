@@ -7,6 +7,7 @@ PanelScore::PanelScore(TetrisGame *game, float fontSize, float left
     ,float top, float width){
     this->game = game;
     this->fontSize = fontSize;
+    this->biggerFontSize = 1.2f * fontSize;
 
     this->top = top; 
     this->left = left;
@@ -18,6 +19,9 @@ void PanelScore::update(){
     // score++;
     if(score < targerScore){
         score++;
+        curFontSize = biggerFontSize;
+    }else{
+        curFontSize = fontSize;
     }
 }
 
@@ -33,7 +37,7 @@ void PanelScore::resetScore(){
 
 void PanelScore::render(){
     purple::TextPaint textPaint;
-    textPaint.setTextSize(fontSize);
+    textPaint.setTextSize(curFontSize);
     textPaint.textColor = purple::ConverColorValue(purple::Color::White);
     textPaint.fontName = "youyuan";
     textPaint.textGravity = purple::TextGravity::Center; 
