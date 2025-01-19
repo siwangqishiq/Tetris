@@ -34,19 +34,19 @@ void IShape::onRotate(){
     }else{//水平形态 -> 垂直
         // std::cout << "hor->ver rotaet end" << std::endl;
 
-        std::cout << "ver->hor rotaet 0" << std::endl;
+        // std::cout << "ver->hor rotaet 0" << std::endl;
         rotatePoints[0*2] = midPointRow - 2;
         rotatePoints[0*2 + 1] = midPointCol;
 
-        std::cout << "ver->hor rotaet 1" << std::endl;
+        // std::cout << "ver->hor rotaet 1" << std::endl;
         rotatePoints[1*2] = midPointRow - 1;
         rotatePoints[1*2 + 1] = midPointCol;
         
-        std::cout << "ver->hor rotaet 3" << std::endl;
+        // std::cout << "ver->hor rotaet 3" << std::endl;
         rotatePoints[3*2] = midPointRow + 1;
         rotatePoints[3*2 + 1] = midPointCol;
 
-        std::cout << "ver->hor rotaet 0" << std::endl;
+        // std::cout << "ver->hor rotaet 0" << std::endl;
     }
 
     if(checkPointsOverlayGrid(rotatePoints)){
@@ -58,41 +58,41 @@ void IShape::onRotate(){
     isVertical = !isVertical;
 }
 
-void IShape::onMoveLeft(){
-    if(!checkAllCubesCanMoveLeft()){
-        return;
-    }
+// void IShape::onMoveLeft(){
+//     if(!checkAllCubesCanMoveLeft()){
+//         return;
+//     }
 
-    const int len = points.size() >> 1;
-    for(int i = 0 ; i < len ; i++){
-        int col = points[(i << 1) + 1];
-        points[(i << 1) + 1] = col - 1;
-    }//end for i
-}
+//     const int len = points.size() >> 1;
+//     for(int i = 0 ; i < len ; i++){
+//         int col = points[(i << 1) + 1];
+//         points[(i << 1) + 1] = col - 1;
+//     }//end for i
+// }
 
-void IShape::onMoveRight(){
-    if(!checkAllCubesCanMoveRight()){
-        return;
-    }
+// void IShape::onMoveRight(){
+//     if(!checkAllCubesCanMoveRight()){
+//         return;
+//     }
 
-    const int len = points.size() >> 1;
-    for(int i = 0 ; i < len ; i++){
-        int col = points[ (i << 1) + 1];
-        points[(i << 1) + 1] = col + 1;
-    }//end for i
-}
+//     const int len = points.size() >> 1;
+//     for(int i = 0 ; i < len ; i++){
+//         int col = points[ (i << 1) + 1];
+//         points[(i << 1) + 1] = col + 1;
+//     }//end for i
+// }
 
-void IShape::onMoveDown(){
-    if(!checkAllCubesCanMoveDown()){
-        return;
-    }
+// void IShape::onMoveDown(){
+//     if(!checkAllCubesCanMoveDown()){
+//         return;
+//     }
 
-    const int len = points.size() >> 1;
-    for(int i = 0 ; i < len ; i++){
-        int row = points[(i << 1)];
-        points[(i << 1)] = row + 1;
-    }//end for i
-}
+//     const int len = points.size() >> 1;
+//     for(int i = 0 ; i < len ; i++){
+//         int row = points[(i << 1)];
+//         points[(i << 1)] = row + 1;
+//     }//end for i
+// }
 
 void IShape::updateVertPoints(){
     points[0] = 0;

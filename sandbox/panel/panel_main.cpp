@@ -4,6 +4,7 @@
 #include "common.h"
 #include "shape/shape.h"
 #include "shape/ishape.h"
+#include "shape/lshape.h"
 #include "panel/panel_score.h"
 
 PanelMain::PanelMain(TetrisGame *game,
@@ -30,7 +31,7 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
         shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_L:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<LShape>(game);
         break;
     case TETRIS_TYPE_O:
         shape = std::make_shared<IShape>(game);
@@ -85,7 +86,7 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(type);
+    this->currentShape = createShapeByType(TETRIS_TYPE_L);
     this->currentShape->reset();
 
     checkIsGameOver();

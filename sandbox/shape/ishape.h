@@ -10,11 +10,10 @@ public:
 
     virtual void reset();
     virtual void onRotate();
-
-    virtual void onMoveLeft();
-    virtual void onMoveRight();
-    virtual void onMoveDown();
-
+    
+    // virtual void onMoveLeft();
+    // virtual void onMoveRight();
+    // virtual void onMoveDown();
 private:
     bool isVertical = false;
     void updateVertPoints();

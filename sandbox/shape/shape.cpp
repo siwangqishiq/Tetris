@@ -39,12 +39,39 @@ void Shape::rotate(){
 }
 
 void Shape::onMoveLeft(){
+    if(!checkAllCubesCanMoveLeft()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len ; i++){
+        int col = points[(i << 1) + 1];
+        points[(i << 1) + 1] = col - 1;
+    }//end for i
 }
 
 void Shape::onMoveRight(){
+    if(!checkAllCubesCanMoveRight()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len ; i++){
+        int col = points[ (i << 1) + 1];
+        points[(i << 1) + 1] = col + 1;
+    }//end for i
 }
 
 void Shape::onMoveDown(){
+    if(!checkAllCubesCanMoveDown()){
+        return;
+    }
+
+    const int len = points.size() >> 1;
+    for(int i = 0 ; i < len ; i++){
+        int row = points[(i << 1)];
+        points[(i << 1)] = row + 1;
+    }//end for i
 }
 
 void Shape::onMoveUp(){
