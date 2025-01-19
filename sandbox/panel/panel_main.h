@@ -55,4 +55,6 @@ private:
     void checkIsGameOver();
 
     void addScores();
+
+    void onPressKeyDown();
 };

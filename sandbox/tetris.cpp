@@ -26,7 +26,7 @@ void TetrisGame::onInit(){
 
     initGridData();
     
-    state = GameState::Start;
+    state = GameState::Splash;
     priorFrameTimeMils = purple::currentTimeMillis();
 }
 

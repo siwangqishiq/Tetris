@@ -123,9 +123,6 @@ void PanelMain::currentTetrisDown(){
         }else{
             currentShape->moveDown();
         }
-        // if(!currentShape->checkAllCubesCanMoveDown()){ //不可下降
-        //     game->gameScene->panelMain->blitTetrisToGrid();
-        // }
     }
 }
 
@@ -287,13 +284,26 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
     }else if(event.code == purple::CODE_KEY_DOWN
         && (event.action == purple::EVENT_ACTION_KEYBOARD_PRESS
             || event.action == purple::EVENT_ACTION_KEYBOARD_REPEAT)){ // move down
-        currentShape->moveDown();
+        onPressKeyDown();
     }else if(event.code == purple::CODE_KEY_UP
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move up
         currentShape->moveUp();
     }else if(event.code == purple::CODE_KEY_ENTER
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // roate
         currentShape->rotate();
+    }
+}
+
+void PanelMain::onPressKeyDown(){
+    if(currentShape != nullptr){
+        if(currentShape->checkAllCubesCanMoveDown()){
+            currentShape->moveDown();
+            if(!currentShape->checkAllCubesCanMoveDown()){
+                game->gameScene->panelMain->blitTetrisToGrid();
+            }
+        }else{
+            blitTetrisToGrid();
+        }
     }
 }
 
