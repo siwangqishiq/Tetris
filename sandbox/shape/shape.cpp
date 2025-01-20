@@ -148,7 +148,7 @@ void Shape::render(){
         cubeRect.left = gamePanelRect.left + col * cubeSize;
         cubeRect.top = gamePanelRect.top - row * cubeSize;
 
-        auto region = game->cubesTextureList[getColor()];
+        auto region = game->getCubeImageRegionByColor(getColor());
         spriteBatch->renderRegionImage(*region, cubeRect);
     }//end for i
     spriteBatch->end();

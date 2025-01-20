@@ -2,9 +2,9 @@
 
 #include "shape/shape.h"
 
-class TShape : public Shape{
+class JShape : public Shape{
 public:
-    TShape(TetrisGame *game_):Shape(game_){
+    JShape(TetrisGame *game_):Shape(game_){
     }
 
     virtual CubeColor getColor();

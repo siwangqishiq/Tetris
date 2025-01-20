@@ -41,13 +41,13 @@ public:
 
     void exitGame();
 
-    std::vector<std::shared_ptr<purple::TextureImageRegion>> cubesTextureList;
-
     std::vector<std::vector<int>> gridData;
 
     int getNextTetrisType();
 
     int genNextTertisType();
+
+    std::shared_ptr<purple::TextureImageRegion> getCubeImageRegionByColor(int cubeColor);
 
     virtual ~TetrisGame();
 
@@ -59,6 +59,8 @@ private:
     void initGridData();
 
     std::string TAG = "TetrisGame";
+
+    std::vector<std::shared_ptr<purple::TextureImageRegion>> cubesTextureList;
 
     int nextTetris = -1;
 

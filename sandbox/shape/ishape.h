@@ -1,3 +1,5 @@
+#pragma once
+
 #include "shape/shape.h"
 
 class TetrisGame;

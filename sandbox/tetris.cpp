@@ -26,7 +26,7 @@ void TetrisGame::onInit(){
 
     initGridData();
     
-    state = GameState::Splash;
+    state = GameState::Start;
     priorFrameTimeMils = purple::currentTimeMillis();
 }
 
@@ -43,9 +43,18 @@ void TetrisGame::loadResoures(){
 
     const int size = 64;
     for(int i = 0 ; i < CubeColor::End; i++){
-        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size, size);
+        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size);
         cubesTextureList.push_back(textureRegion);
     }//end for i
+}
+
+std::shared_ptr<purple::TextureImageRegion> TetrisGame::getCubeImageRegionByColor(int cubeColor){
+    int colorIndex = cubeColor - 1;
+    const int textureListLen = static_cast<int>(cubesTextureList.size());
+    if(colorIndex < 0 || colorIndex >= textureListLen){
+        return cubesTextureList[0];
+    }
+    return cubesTextureList[colorIndex];
 }
 
 void TetrisGame::initGridData(){

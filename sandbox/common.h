@@ -1,15 +1,15 @@
 #pragma once
 
 enum CubeColor{
-    Yellow = 0,
-    Cyan = 1,
-    Red = 2,
-    Blue = 3,
-    Green = 4,
-    Orange = 5,
-    Purple = 6,
-    Gray = 7,
-    End = 8
+    Yellow = 1,
+    Cyan = 2,
+    Red = 3,
+    Blue = 4,
+    Green = 5,
+    Orange = 6,
+    Purple = 7,
+    Gray = 8,
+    End = 9
 };
 
 

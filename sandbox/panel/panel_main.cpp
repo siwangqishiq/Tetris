@@ -5,6 +5,11 @@
 #include "shape/shape.h"
 #include "shape/ishape.h"
 #include "shape/lshape.h"
+#include "shape/oshape.h"
+#include "shape/sshape.h"
+#include "shape/tshape.h"
+#include "shape/zshape.h"
+#include "shape/jshape.h"
 #include "panel/panel_score.h"
 
 PanelMain::PanelMain(TetrisGame *game,
@@ -28,24 +33,25 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
         shape = std::make_shared<IShape>(game);
         break;
     case TETRIS_TYPE_J:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<JShape>(game);
         break;
     case TETRIS_TYPE_L:
         shape = std::make_shared<LShape>(game);
         break;
     case TETRIS_TYPE_O:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<OShape>(game);
         break;
     case TETRIS_TYPE_S:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<SShape>(game);
         break;
     case TETRIS_TYPE_T:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<TShape>(game);
         break;
     case TETRIS_TYPE_Z:
-        shape = std::make_shared<IShape>(game);
+        shape = std::make_shared<ZShape>(game);
         break;
     default:
+        shape = std::make_shared<IShape>(game);
         break;
     }//end switch
     return shape;
@@ -86,7 +92,7 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(TETRIS_TYPE_L);
+    this->currentShape = createShapeByType(TETRIS_TYPE_J);
     this->currentShape->reset();
 
     checkIsGameOver();
@@ -134,12 +140,19 @@ void PanelMain::blitTetrisToGrid(){
     }
 
     std::vector<int> &points = currentShape->getPoints();
+
+    // for(auto &v : points){
+    //     std::cout << v << " ";
+    // }
+    // std::cout << "\n";
+
     const int len = points.size() >> 1;
     for(int i = 0; i < len ; i++){
         const int row = points[(i << 1)];
         const int col = points[(i << 1) + 1];
 
         if(Shape::checkRowColInRange(row , col)){
+            std::cout << "\n";
             game->gridData[row][col] = currentShape->getColor();
             // game->gridData[row][col] = CubeColor::Gray;
         }
@@ -171,6 +184,8 @@ void PanelMain::dismissGridRows(){
         return;
     }
 
+    // std::cout << "dismissGridRows size = " << willDismissRows.size() << std::endl;
+    
     auto copyGrids = game->gridData;
     //clear
     for(int i = 0 ; i < TetrisGame::ROW_COUNT -1 ;i++){
@@ -255,12 +270,12 @@ void PanelMain::renderGrids(){
 
             int dataType = this->game->gridData[i][j];
             if(dataType == GRID_TYPE_WALL){
-                auto region = game->cubesTextureList[CubeColor::Gray];
+                auto region = game->getCubeImageRegionByColor(CubeColor::Gray);
                 spriteBatch->renderRegionImage(*region, cubeRect);
             }else if(dataType == GRID_TYPE_IDLE){
                 //render nothing
             }else if(dataType > 0){ // render color cube
-                auto region = game->cubesTextureList[dataType];
+                auto region = game->getCubeImageRegionByColor(dataType);
                 spriteBatch->renderRegionImage(*region, cubeRect);
             }
         }//end for j
@@ -299,6 +314,8 @@ void PanelMain::onPressKeyDown(){
     if(currentShape != nullptr){
         if(currentShape->checkAllCubesCanMoveDown()){
             currentShape->moveDown();
+            timeRecord = 0;
+
             if(!currentShape->checkAllCubesCanMoveDown()){
                 game->gameScene->panelMain->blitTetrisToGrid();
             }
