@@ -92,7 +92,7 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(TETRIS_TYPE_J);
+    this->currentShape = createShapeByType(type);
     this->currentShape->reset();
 
     checkIsGameOver();
