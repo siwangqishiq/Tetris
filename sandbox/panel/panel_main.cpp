@@ -335,7 +335,7 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
     }else if(event.code == purple::CODE_KEY_UP
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // move up
         currentShape->moveUp();
-    }else if(event.code == purple::CODE_KEY_ENTER
+    }else if((event.code == purple::CODE_KEY_ENTER || event.code == purple::CODE_KEY_SPACE)
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // roate
         currentShape->rotate();
     }
