@@ -58,8 +58,8 @@ void PanelNext::render(){
     textPaint.textGravity = TextGravity::Center; 
 
     purple::TextRenderOutInfo textOutInfo;
-    purple::Engine::getRenderEngine()->renderTextWithRect(L"下一个" , wrapRect, textPaint , 
-        &textOutInfo);
+    purple::Engine::getRenderEngine()->renderTextWithRect(L"下一个" , 
+        wrapRect, textPaint, &textOutInfo);
 
     if(nextTetrisType < 0 || nextShape == nullptr){
         return;

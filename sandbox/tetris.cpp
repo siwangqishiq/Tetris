@@ -29,7 +29,7 @@ void TetrisGame::onInit(){
 
     initGridData();
     
-    state = GameState::Start;
+    state = GameState::Splash;
     priorFrameTimeMils = purple::currentTimeMillis();
 }
 
@@ -49,6 +49,32 @@ void TetrisGame::loadResoures(){
         std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size, size);
         cubesTextureList.push_back(textureRegion);
     }//end for i
+
+
+    audioBgm = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/bgm3.mp3" , true);
+    audioFailed = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/failed.mp3");
+    audioCubeMove = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/cube_down.wav");
+    audioCubeRotate = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/cube_rotate.wav");
+    audioCubeDismiss = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/cube_dismiss.wav");
+}
+
+void TetrisGame::playSound(std::shared_ptr<purple::AudioEntity> entity){
+    if(entity == nullptr){
+        return;
+    }
+    purple::AudioManager::getInstance()->playAudioEntity(entity);
+}
+
+void TetrisGame::stopSound(std::shared_ptr<purple::AudioEntity> entity){
+    if(entity == nullptr){
+        return;
+    }
+    purple::AudioManager::getInstance()->stopAudioEntity(entity);
 }
 
 std::shared_ptr<purple::TextureImageRegion> TetrisGame::getCubeImageRegionByColor(int cubeColor){
@@ -94,8 +120,6 @@ void TetrisGame::onTick(){
         default:
             break;
     }//end switch
-
-
 }
 
 void TetrisGame::updateState(GameState newState){
@@ -140,6 +164,12 @@ void TetrisGame::onDispose(){
     if(splashScene != nullptr){
         splashScene->dispose();
     }
+
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioBgm);
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioFailed);
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeMove);
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeRotate);
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeDismiss);
 }
 
 

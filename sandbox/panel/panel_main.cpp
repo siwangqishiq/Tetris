@@ -59,11 +59,8 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType , TetrisGame *
 }
 
 void PanelMain::update(){
-    if(currentShape != nullptr){
-        const float cubeSize = this->game->gameScene->cubeSize;
-        auto gamePanelRect = this->game->gameScene->panelMain->rect;
-        currentShape->update(gamePanelRect.left , gamePanelRect.top , cubeSize);
-    }
+    // if(currentShape != nullptr){
+    // }
 
     if(state == UNSET){
         state = GenCube;
@@ -100,6 +97,8 @@ void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
     game->genNextTertisType();
 
+    game->playSound(game->audioCubeMove);
+
     onNextTetrisChanged();
 
     currentShape = createShapeByType(type , this->game);
@@ -130,6 +129,9 @@ void PanelMain::checkIsGameOver(){
 }
 
 void PanelMain::onGameOver(){
+    game->stopSound(game->audioBgm);
+    game->playSound(game->audioFailed);
+
     this->game->state = Splash;
 
     for(int i = 0; i < TetrisGame::ROW_COUNT - 1 ;i++){
@@ -149,6 +151,7 @@ void PanelMain::currentTetrisDown(){
 
     if(currentShape != nullptr){
         if(!currentShape->checkAllCubesCanMoveDown()){ //不可下降
+            game->playSound(game->audioCubeMove);
             game->gameScene->panelMain->blitTetrisToGrid();
             return;
         }else{
@@ -208,6 +211,8 @@ void PanelMain::dismissGridRows(){
     }
 
     // std::cout << "dismissGridRows size = " << willDismissRows.size() << std::endl;
+
+    game->playSound(game->audioCubeDismiss);
     
     auto copyGrids = game->gridData;
     //clear
@@ -270,6 +275,9 @@ void PanelMain::render(){
     renderGrids();
 
     if(currentShape != nullptr){
+        const float cubeSize = this->game->gameScene->cubeSize;
+        auto gamePanelRect = this->game->gameScene->panelMain->rect;
+        currentShape->update(gamePanelRect.left , gamePanelRect.top , cubeSize);
         currentShape->render();
     }
 }
@@ -336,6 +344,7 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
 void PanelMain::onPressKeyDown(){
     if(currentShape != nullptr){
         if(currentShape->checkAllCubesCanMoveDown()){
+            game->playSound(game->audioCubeRotate);
             currentShape->moveDown();
             timeRecord = 0;
 

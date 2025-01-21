@@ -24,6 +24,6 @@ private:
     float height = 0.0f;
 
     std::shared_ptr<Shape> nextShape = nullptr;
-
+    
     void adjustShapePoints();
 };

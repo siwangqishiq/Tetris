@@ -19,6 +19,7 @@ const int GRID_TYPE_WALL = 100;
 
 class TextureImage;
 class TextureImageRegion;
+class AudioEntity;
 
 class TetrisGame : public purple::IApp{
 public:
@@ -57,6 +58,16 @@ public:
 
     long updateDelayMils = 1000;//更新时间间隔 
     long deltaTimeMils = -1;
+
+    std::shared_ptr<purple::AudioEntity> audioBgm;
+    std::shared_ptr<purple::AudioEntity> audioFailed;
+    std::shared_ptr<purple::AudioEntity> audioCubeMove;
+    std::shared_ptr<purple::AudioEntity> audioCubeRotate;
+    std::shared_ptr<purple::AudioEntity> audioCubeDismiss;
+
+    void playSound(std::shared_ptr<purple::AudioEntity> entity);
+
+    void stopSound(std::shared_ptr<purple::AudioEntity> entity);
 private:
     void loadResoures();
 

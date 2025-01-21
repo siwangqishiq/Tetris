@@ -19,14 +19,17 @@ void Shape::reset(){
 }
 
 void Shape::moveLeft(){
+    game->playSound(game->audioCubeRotate);
     onMoveLeft();
 }
 
 void Shape::moveRight(){
+    game->playSound(game->audioCubeRotate);
     onMoveRight();
 }
 
 void Shape::moveDown(){
+    // game->playSound(game->audioCubeRotate);
     onMoveDown();
 }
 
@@ -35,6 +38,7 @@ void Shape::moveUp(){
 }
 
 void Shape::rotate(){
+    game->playSound(game->audioCubeRotate);
     onRotate();
 }
 

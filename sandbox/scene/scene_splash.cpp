@@ -11,7 +11,7 @@ void SceneSplash::init(){
     logoWidth = purple::Engine::ScreenHeight / 1.5f;
 
     audioItemChange = purple::AudioManager::getInstance()
-        ->loadAudioEntity("audio/menu_item_change.mp3");
+        ->loadAudioEntity("audio/menu_item_change.wav");
 }
 
 void SceneSplash::dispose(){
@@ -34,11 +34,13 @@ void SceneSplash::onInputEvent(purple::InputEvent &event){
 void SceneSplash::pressEnterKey(){
     purple::Log::i("SceneSplash" , "pressEnterKey");
 
-    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+    // purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+    game->playSound(audioItemChange);
 
     if(currentMenuIndex == MENU_START_GAME){
         this->currentMenuIndex = 0;
         game->updateState(GameState::Start);
+        game->playSound(game->audioBgm);
     }else if(currentMenuIndex == MENU_EXIT_GAME){
         game->exitGame();
     }
