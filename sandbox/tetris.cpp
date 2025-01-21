@@ -5,6 +5,7 @@
 #include "render/sprite.h"
 #include "tetris.h"
 #include "utils.h"
+#include "widget/random_util.h"
 
 extern bool isAppExist;//外部全局变量 控制退出app
 
@@ -13,6 +14,8 @@ TetrisGame::~TetrisGame(){
 }
 
 void TetrisGame::onInit(){
+    purple::RandomUtil::setRandomSeed(purple::currentTimeMillis() / 1000);
+
     splashScene = std::make_shared<SceneSplash>(this);
     gameScene = std::make_shared<SceneGame>(this);
 
@@ -43,7 +46,7 @@ void TetrisGame::loadResoures(){
 
     const int size = 64;
     for(int i = 0 ; i < CubeColor::End; i++){
-        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size);
+        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size - 2);
         cubesTextureList.push_back(textureRegion);
     }//end for i
 }
@@ -123,7 +126,6 @@ int TetrisGame::getNextTetrisType(){
     if(nextTetris < 0){
         return genNextTertisType();
     }
-    
     return nextTetris;
 }
 

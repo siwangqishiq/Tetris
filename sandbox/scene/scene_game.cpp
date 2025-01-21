@@ -22,18 +22,25 @@ void SceneGame::init(){
     const float rightBoxWidth = purple::Engine::ScreenWidth - rightBoxLeft - PADDING;
     const float rightBoxTop = panelMainTop;
 
-    panelScore = std::make_shared<PanelScore>(this->game, 2.0f * cubeSize ,
-        rightBoxLeft , rightBoxTop, rightBoxWidth);
+    panelScore = std::make_shared<PanelScore>(this->game, 
+        2.0f * cubeSize ,
+        rightBoxLeft , 
+        rightBoxTop, 
+        rightBoxWidth);
+
+    panelNext = std::make_shared<PanelNext>(this->game);
 }
 
 void SceneGame::update(){
     panelMain->update();
     panelScore->update();
+    panelNext->update();
 }
 
 void SceneGame::render(){
     panelMain->render();
     panelScore->render();
+    panelNext->render();
 }
 
 void SceneGame::onInputEvent(purple::InputEvent &event){

@@ -14,6 +14,8 @@ public:
     void addScore(int addScore);
 
     void resetScore();
+
+    purple::Rect getContentRect();
 private:
     TetrisGame *game = nullptr;
     float left;

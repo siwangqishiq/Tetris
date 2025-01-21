@@ -34,6 +34,9 @@ void PanelScore::resetScore(){
     score = 0;
 }
 
+purple::Rect PanelScore::getContentRect(){
+    return purple::Rect(left , top , width , curFontSize + curFontSize);
+}
 
 void PanelScore::render(){
     purple::TextPaint textPaint;

@@ -45,12 +45,12 @@ void IShape::onRotate(){
         // std::cout << "ver->hor rotaet 3" << std::endl;
         rotatePoints[3*2] = midPointRow + 1;
         rotatePoints[3*2 + 1] = midPointCol;
-
+        
         // std::cout << "ver->hor rotaet 0" << std::endl;
     }
 
     if(checkPointsOverlayGrid(rotatePoints)){
-        std::cout << "point overlay grid data" << std::endl;
+        purple::Log::i("Tetris","point overlay grid data");
         return;
     }
 

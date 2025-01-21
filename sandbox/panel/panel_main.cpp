@@ -83,7 +83,6 @@ void PanelMain::update(){
     }else if(state == CubeDismiss){
         dismissGridRows();
 
-        
         state = GenCube;
     }else if(state == GameOver){
         game->state = GameState::Splash;
@@ -92,7 +91,7 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(TETRIS_TYPE_J);
+    this->currentShape = createShapeByType(type);
     this->currentShape->reset();
 
     checkIsGameOver();
@@ -152,7 +151,6 @@ void PanelMain::blitTetrisToGrid(){
         const int col = points[(i << 1) + 1];
 
         if(Shape::checkRowColInRange(row , col)){
-            std::cout << "\n";
             game->gridData[row][col] = currentShape->getColor();
             // game->gridData[row][col] = CubeColor::Gray;
         }
