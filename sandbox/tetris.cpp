@@ -46,7 +46,11 @@ void TetrisGame::loadResoures(){
 
     const int size = 64;
     for(int i = 0 ; i < CubeColor::End; i++){
+<<<<<<< HEAD
         std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size - 2);
+=======
+        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size -2);
+>>>>>>> 1f0853ca73e30b8f5e332823210f2cb2084f0fb6
         cubesTextureList.push_back(textureRegion);
     }//end for i
 }
