@@ -9,9 +9,6 @@
    id="svg1"
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    sodipodi:docname="cubes.svg"
-   inkscape:export-filename="cubes.png"
-   inkscape:export-xdpi="256.03864"
-   inkscape:export-ydpi="256.03864"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -19,20 +16,20 @@
   <sodipodi:namedview
      id="namedview1"
      pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
+     bordercolor="#666666"
+     borderopacity="1.0"
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.0535659"
-     inkscape:cx="432.90551"
-     inkscape:cy="393.21845"
+     inkscape:zoom="0.94489227"
+     inkscape:cx="411.15798"
+     inkscape:cy="320.67148"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -42,169 +39,120 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="use20-5"
-       transform="matrix(0.26648134,0,0,0.26648135,101.12813,76.322044)">
-      <!-- color for "I" tetromino -->
+       id="g2"
+       inkscape:label="yello"
+       transform="translate(0,62.840069)">
       <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#00cccc"
-         id="rect18" />
-      <polygon
-         fill="#00ffff"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon19" />
-      <polygon
-         fill="#009999"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon20" />
+         style="fill:#ffe74d;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1"
+         width="30.714651"
+         height="31.327425"
+         x="0.13460393"
+         y="0.11273607" />
+      <path
+         style="fill:#c8ae00;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 0.12593571,31.388635 30.840586,31.285585 V 0.00968575 Z"
+         id="path1" />
+      <rect
+         style="fill:#d9bd00;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2"
+         width="22.504404"
+         height="23.099115"
+         x="4.2941194"
+         y="4.2396836" />
     </g>
     <g
-       id="use22-1"
-       transform="matrix(0.26458333,0,0,0.26458334,132.90211,76.271823)">
-      <!-- color for "T" tetromino -->
+       id="g2-6"
+       inkscape:label="green"
+       transform="translate(139.10305,62.840069)">
       <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#9900cc"
-         id="rect5" />
-      <polygon
-         fill="#cc00ff"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon9" />
-      <polygon
-         fill="#660099"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon10" />
+         style="fill:#87de87;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-1"
+         width="30.714651"
+         height="31.327425"
+         x="0.13460393"
+         y="0.11273607" />
+      <path
+         style="fill:#2ca02c;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 0.12593571,31.388635 30.840586,31.285585 V 0.00968575 Z"
+         id="path1-8" />
+      <rect
+         style="fill:#37c837;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-9"
+         width="22.504404"
+         height="23.099115"
+         x="4.2941194"
+         y="4.2396836" />
     </g>
     <g
-       id="use23-8"
-       transform="matrix(0.26458333,0,0,0.26458334,94.797586,76.381657)">
-      <!-- color for "O" tetromino -->
+       id="g2-3"
+       inkscape:label="blue"
+       transform="translate(104.32729,62.840069)">
       <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#cccc00"
-         id="rect16" />
-      <polygon
-         fill="#ffff00"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon17" />
-      <polygon
-         fill="#999900"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon18" />
+         style="fill:#80b3ff;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-2"
+         width="30.714651"
+         height="31.327425"
+         x="0.13460393"
+         y="0.11273607" />
+      <path
+         style="fill:#0055d4;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 0.12593571,31.388635 30.840586,31.285585 V 0.00968575 Z"
+         id="path1-2" />
+      <rect
+         style="fill:#5599ff;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-16"
+         width="22.504404"
+         height="23.099115"
+         x="4.2941194"
+         y="4.2396836" />
     </g>
     <g
-       id="use34-6"
-       transform="matrix(0.26458333,0,0,0.26458334,107.52368,76.3155)">
-      <!-- color for "Z" tetromino -->
+       id="g3"
+       style="fill:#d40000;fill-opacity:1"
+       transform="translate(8.1548784,62.989762)"
+       inkscape:label="red">
       <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#cc0000"
-         id="rect22" />
-      <polygon
-         fill="#ff0000"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon23" />
-      <polygon
-         fill="#990000"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon24" />
-    </g>
-    <g
-       id="use48-3"
-       transform="matrix(0.26458333,0,0,0.26458334,120.21438,76.322359)">
-      <!-- color for "S" tetromino -->
+         style="fill:#ff8080;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-52"
+         width="30.714651"
+         height="31.327425"
+         x="61.531254"
+         y="-0.036956821" />
+      <path
+         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 61.522581,31.238942 30.714653,-0.10305 V -0.14000714 Z"
+         id="path1-7" />
       <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#00cc00"
-         id="rect1" />
-      <polygon
-         fill="#00ff00"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon1" />
-      <polygon
-         fill="#009900"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon2" />
-    </g>
-    <g
-       id="use66-6"
-       transform="matrix(0.26458333,0,0,0.26458334,113.87364,76.287807)">
-      <!-- color for "J" tetromino -->
-      <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#0000cc"
-         id="rect11" />
-      <polygon
-         fill="#0000ff"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon13" />
-      <polygon
-         fill="#000099"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon16" />
-    </g>
-    <g
-       id="use78-6"
-       transform="matrix(0.26458333,0,0,0.26458334,126.58382,76.280881)">
-      <!-- color for "L" tetromino -->
-      <rect
-         x="2"
-         y="2"
-         width="20"
-         height="20"
-         fill="#cc6600"
-         id="rect20" />
-      <polygon
-         fill="#ff8800"
-         points="24,0 22,2 2,2 2,22 0,24 0,0 "
-         id="polygon21" />
-      <polygon
-         fill="#994400"
-         points="24,24 0,24 2,22 22,22 22,2 24,0 "
-         id="polygon22" />
+         style="fill:#ff5555;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-6"
+         width="22.504404"
+         height="23.099115"
+         x="65.690765"
+         y="4.0899911" />
     </g>
     <g
        id="g4"
-       transform="translate(22.25735,-13.405004)">
+       transform="translate(3.9590988,62.8348)"
+       inkscape:label="cyan">
       <rect
-         style="fill:#999999;stroke-width:0.261774"
-         id="rect3"
-         width="6.3546619"
-         height="6.3546619"
-         x="116.97792"
-         y="89.669403" />
-      <g
-         id="g3">
-        <path
-           id="rect3-3"
-           style="fill:#4d4d4d;stroke-width:0.260836"
-           d="m 116.99204,96.017073 v 0.01656 h 6.33144 l 3.5e-4,-6.331804 h -0.0166 z" />
-        <rect
-           style="fill:#666666;stroke-width:0.215161"
-           id="rect3-4"
-           width="5.2196398"
-           height="5.2266016"
-           x="117.56644"
-           y="90.228874" />
-      </g>
+         style="fill:#00e3e3;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-5"
+         width="30.714651"
+         height="31.327425"
+         x="30.900753"
+         y="-0.010807315" />
+      <path
+         style="fill:#00b1b1;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 30.993116,31.471193 30.71465,-0.103051 V 0.09224345 Z"
+         id="path1-5" />
+      <rect
+         style="fill:#00cdcd;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-1"
+         width="22.504404"
+         height="23.099115"
+         x="35.161301"
+         y="4.3222418" />
     </g>
   </g>
 </svg>
