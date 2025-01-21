@@ -58,6 +58,14 @@ void IShape::onRotate(){
     isVertical = !isVertical;
 }
 
+int IShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 4 * game->gameScene->cubeSize;
+}
+
 // void IShape::onMoveLeft(){
 //     if(!checkAllCubesCanMoveLeft()){
 //         return;

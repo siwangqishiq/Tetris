@@ -11,4 +11,6 @@ public:
 
     virtual void reset();
     virtual void onRotate();
+
+    virtual int getShapeWidth();
 };

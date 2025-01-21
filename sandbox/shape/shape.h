@@ -33,6 +33,8 @@ public:
     virtual void onMoveUp();
     virtual void onMoveDown();
 
+    virtual int getShapeWidth();
+
     bool checkAllCubesCanMoveLeft();
     bool checkAllCubesCanMoveRight();
     bool checkAllCubesCanMoveDown();
@@ -44,6 +46,10 @@ public:
     virtual ~Shape();
 
     std::vector<int>& getPoints();
+
+    void setPoints(std::vector<int> newPoints){
+        this->points = newPoints;
+    }
 protected:
     std::vector<int> points = {0,0, 0,0, 0,0, 0,0}; //行 ,列
     TetrisGame *game = nullptr;

@@ -80,6 +80,10 @@ void Shape::onMoveUp(){
 void Shape::onRotate(){
 }
 
+int Shape::getShapeWidth(){
+    return 0;
+}
+
 bool Shape::checkAllCubesCanMoveLeft(){
     const int len = points.size() >> 1;
     for(int i = 0 ; i < len; i++){
@@ -153,7 +157,7 @@ void Shape::render(){
 
         cubeRect.left = this->left + col * cubeSize;
         cubeRect.top = this->top - row * cubeSize;
-
+        
         auto region = game->getCubeImageRegionByColor(getColor());
         spriteBatch->renderRegionImage(*region, cubeRect);
     }//end for i

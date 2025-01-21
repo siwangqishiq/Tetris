@@ -1,4 +1,5 @@
 #include "shape/lshape.h"
+#include "tetris.h"
 
 CubeColor LShape::getColor(){
     return CubeColor::Orange;
@@ -130,3 +131,12 @@ void LShape::onRotate(){
         }
     }while(true);
 }
+
+int LShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 3 * game->gameScene->cubeSize;
+}
+

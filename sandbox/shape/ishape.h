@@ -12,6 +12,9 @@ public:
 
     virtual void reset();
     virtual void onRotate();
+
+    virtual int getShapeWidth();
+    
     
     // virtual void onMoveLeft();
     // virtual void onMoveRight();

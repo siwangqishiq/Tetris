@@ -1,4 +1,5 @@
 #include "shape/oshape.h"
+#include "tetris.h"
 
 CubeColor OShape::getColor(){
     return CubeColor::Yellow;
@@ -33,4 +34,12 @@ void OShape::onRotate(){
     // }else if(curMorp == Shape::MORP_THREE){
     //     curMorp = Shape::MORP_ZERO;
     // }
+}
+
+int OShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 2 * game->gameScene->cubeSize;
 }

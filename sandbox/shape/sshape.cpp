@@ -1,4 +1,5 @@
 #include "shape/sshape.h"
+#include "tetris.h"
 
 CubeColor SShape::getColor(){
     return CubeColor::Green;
@@ -87,4 +88,12 @@ void SShape::onRotate(){
             break;
         }
     }while(true);
+}
+
+int SShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 3 * game->gameScene->cubeSize;
 }

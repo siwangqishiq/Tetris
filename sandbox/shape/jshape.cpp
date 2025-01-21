@@ -1,4 +1,5 @@
 #include "shape/jshape.h"
+#include "tetris.h"
 
 CubeColor JShape::getColor(){
     return CubeColor::Blue;
@@ -130,4 +131,12 @@ void JShape::onRotate(){
             break;
         }//end if
     }while(true);
+}
+
+int JShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 3 * game->gameScene->cubeSize;
 }

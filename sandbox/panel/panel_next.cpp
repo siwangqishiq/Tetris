@@ -15,7 +15,29 @@ void PanelNext::nextTetrisChanged(int newNext){
     nextShape = PanelMain::createShapeByType(nextTetrisType , game);
     if(nextShape != nullptr){
         nextShape->reset();
+        adjustShapePoints();
     }
+}
+
+void PanelNext::adjustShapePoints(){
+    //adjust
+    std::vector<int> points = nextShape->getPoints();
+    int minCol = points[1];
+    int len = points.size() >> 1;
+    for(int i = 1; i < len ;i++){
+        if(minCol > points[(i << 1) + 1]){
+            minCol = points[(i << 1) + 1];
+        }
+    }
+
+    const int deltaCol = minCol;
+    std::vector<int> newPoints = points;
+    len = newPoints.size() >> 1;
+    for(int i = 0 ; i < len ;i++){
+        newPoints[(i << 1)] = points[(i << 1)];
+        newPoints[(i << 1) + 1] = points[(i << 1) + 1] - deltaCol;
+    }//end for i
+    nextShape->setPoints(newPoints);
 }
 
 void PanelNext::update(){
@@ -44,6 +66,8 @@ void PanelNext::render(){
     }
 
     const int textHeight = textOutInfo.outRect.height;
-    nextShape->update(left, top - height - textHeight, this->game->gameScene->cubeSize);
+    const float colOffset = nextShape->getShapeWidth() / 2.0f;
+    nextShape->update(left + width / 2.0f - colOffset, 
+        top - height - textHeight, this->game->gameScene->cubeSize);
     nextShape->render();
 }

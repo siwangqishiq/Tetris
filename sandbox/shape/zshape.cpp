@@ -1,4 +1,5 @@
 #include "shape/zshape.h"
+#include "tetris.h"
 
 CubeColor ZShape::getColor(){
     return CubeColor::Red;
@@ -77,7 +78,7 @@ void ZShape::onRotate(){
         }
 
         if(checkPointsOverlayGrid(rotatePoints)){
-            curMorp = (curMorp + 1)% 2;
+            curMorp = (curMorp + 1) % 2;
             if(curMorp == this->morp){
                 break;
             }
@@ -89,3 +90,11 @@ void ZShape::onRotate(){
     }while(true);
 }
 
+
+int ZShape::getShapeWidth(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    return 3 * game->gameScene->cubeSize;
+}
