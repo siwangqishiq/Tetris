@@ -10,6 +10,7 @@ class PanelScore;
 class SceneGame{
 public:
     std::shared_ptr<PanelMain> panelMain;
+    std::shared_ptr<PanelNext> panelNext;
     
     SceneGame(TetrisGame *_game):game(_game){
     }
@@ -35,5 +36,4 @@ private:
     TetrisGame *game = nullptr;
 
     std::shared_ptr<PanelScore> panelScore;
-    std::shared_ptr<PanelNext> panelNext;
 };

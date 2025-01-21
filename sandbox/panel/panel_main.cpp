@@ -11,6 +11,7 @@
 #include "shape/zshape.h"
 #include "shape/jshape.h"
 #include "panel/panel_score.h"
+#include "panel/panel_next.h"
 
 PanelMain::PanelMain(TetrisGame *game,
     float cubeSize,
@@ -26,7 +27,7 @@ PanelMain::PanelMain(TetrisGame *game,
     rect.height = height;
 }
 
-std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
+std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType , TetrisGame *game){
     std::shared_ptr<Shape> shape = nullptr;
     switch (shapeType){
     case TETRIS_TYPE_I:
@@ -51,13 +52,19 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType){
         shape = std::make_shared<ZShape>(game);
         break;
     default:
-        shape = std::make_shared<IShape>(game);
+        shape = nullptr;
         break;
     }//end switch
     return shape;
 }
 
 void PanelMain::update(){
+    if(currentShape != nullptr){
+        const float cubeSize = this->game->gameScene->cubeSize;
+        auto gamePanelRect = this->game->gameScene->panelMain->rect;
+        currentShape->update(gamePanelRect.left , gamePanelRect.top , cubeSize);
+    }
+
     if(state == UNSET){
         state = GenCube;
     }else if(state == GenCube){
@@ -91,10 +98,23 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
-    this->currentShape = createShapeByType(type);
-    this->currentShape->reset();
+    game->genNextTertisType();
+
+    onNextTetrisChanged();
+
+    currentShape = createShapeByType(type , this->game);
+    currentShape->reset();
 
     checkIsGameOver();
+}
+
+void PanelMain::onNextTetrisChanged(){
+    purple::Log::i("Tetris" , "onNextTetrisChanged = %d" , this->game->getNextTetrisValue());
+    auto panelNext = game->gameScene->panelNext;
+    if(panelNext != nullptr){
+        const int newTetrisType = this->game->getNextTetrisValue();
+        panelNext->nextTetrisChanged(newTetrisType);
+    }
 }
 
 void PanelMain::checkIsGameOver(){
@@ -116,6 +136,11 @@ void PanelMain::onGameOver(){
         for(int j = 1 ; j < TetrisGame::COL_COUNT - 1 ; j++){
             this->game->gridData[i][j] = GRID_TYPE_IDLE;
         }
+    }//end for i
+
+    auto panelScore = game->gameScene->getPanelScore();
+    if(panelScore != nullptr){
+        panelScore->resetScore();
     }
 }
 

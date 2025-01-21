@@ -2,9 +2,20 @@
 #include "tetris.h"
 #include "panel/panel_score.h"
 #include "purple_ui.h"
+#include "render/text_render.h"
+#include "panel/panel_main.h"
+#include "shape/shape.h"
 
 PanelNext::PanelNext(TetrisGame *game_){
     this->game = game_;
+}
+
+void PanelNext::nextTetrisChanged(int newNext){
+    this->nextTetrisType = newNext;
+    nextShape = PanelMain::createShapeByType(nextTetrisType , game);
+    if(nextShape != nullptr){
+        nextShape->reset();
+    }
 }
 
 void PanelNext::update(){
@@ -13,7 +24,7 @@ void PanelNext::update(){
     this->left = headBox.left;
     this->top = headBox.getBottom() - 20;
     this->width = headBox.width;
-    this->height = 120.0f;
+    this->height = 100.0f;
 }
 
 void PanelNext::render(){
@@ -23,13 +34,16 @@ void PanelNext::render(){
     purple::TextPaint textPaint;
     textPaint.textColor = purple::ConverColorValue(purple::Color::White);
     textPaint.textGravity = TextGravity::Center; 
-    purple::Engine::getRenderEngine()->renderTextWithRect(L"下一个" , wrapRect, textPaint , nullptr);
 
-    // auto batch = purple::Engine::getRenderEngine()->getShapeBatch();
-    // batch->begin();
+    purple::TextRenderOutInfo textOutInfo;
+    purple::Engine::getRenderEngine()->renderTextWithRect(L"下一个" , wrapRect, textPaint , 
+        &textOutInfo);
 
-    // purple::Paint wrapRectPaint;
-    // wrapRectPaint.color = purple::ConverColorValue(purple::Color::White);
-    // batch->renderRect(wrapRect, wrapRectPaint);
-    // batch->end();
+    if(nextTetrisType < 0 || nextShape == nullptr){
+        return;
+    }
+
+    const int textHeight = textOutInfo.outRect.height;
+    nextShape->update(left, top - height - textHeight, this->game->gameScene->cubeSize);
+    nextShape->render();
 }

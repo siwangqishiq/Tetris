@@ -13,6 +13,8 @@ public:
     static const int MORP_THREE = 3;//
 
     Shape(TetrisGame *game);
+
+    void update(float left , float top , float cubeSize);
     
     virtual CubeColor getColor();
     
@@ -47,5 +49,9 @@ protected:
     TetrisGame *game = nullptr;
 
     int morp = MORP_ZERO;
+
+    float left;
+    float top;
+    float cubeSize;
 };
 

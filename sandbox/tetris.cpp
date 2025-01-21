@@ -46,7 +46,7 @@ void TetrisGame::loadResoures(){
 
     const int size = 64;
     for(int i = 0 ; i < CubeColor::End; i++){
-        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size -2 , size - 2);
+        std::shared_ptr<purple::TextureImageRegion> textureRegion = cubesTexture->createImageRegion(i * size, size, size, size);
         cubesTextureList.push_back(textureRegion);
     }//end for i
 }
@@ -124,13 +124,15 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
 
 int TetrisGame::getNextTetrisType(){
     if(nextTetris < 0){
-        return genNextTertisType();
+        return purple::RndInt(TETRIS_TYPE_I , TETRIS_TYPE_Z);
     }
     return nextTetris;
 }
 
 int TetrisGame::genNextTertisType(){
-    return purple::RndInt(TETRIS_TYPE_I , TETRIS_TYPE_Z);
+    nextTetris = purple::RndInt(TETRIS_TYPE_I , TETRIS_TYPE_Z);
+    // nextTetris = TETRIS_TYPE_I;//debug
+    return nextTetris;
 }
 
 void TetrisGame::onDispose(){

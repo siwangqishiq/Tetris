@@ -47,6 +47,10 @@ public:
 
     int genNextTertisType();
 
+    int getNextTetrisValue(){
+        return nextTetris;
+    }
+
     std::shared_ptr<purple::TextureImageRegion> getCubeImageRegionByColor(int cubeColor);
 
     virtual ~TetrisGame();

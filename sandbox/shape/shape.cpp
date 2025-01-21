@@ -130,9 +130,15 @@ bool Shape::checkRowColInRange(int row , int col){
         && col >=0 && col < TetrisGame::COL_COUNT;
 }
 
+void Shape::update(float left , float top , float cubeSize){
+    this->left = left;
+    this->top = top;
+    this->cubeSize = cubeSize;
+}
+
 void Shape::render(){
-    const float cubeSize = this->game->gameScene->cubeSize;
-    auto gamePanelRect = this->game->gameScene->panelMain->rect;
+    // const float cubeSize = this->game->gameScene->cubeSize;
+    // auto gamePanelRect = this->game->gameScene->panelMain->rect;
 
     purple::Rect cubeRect;
     cubeRect.width = cubeSize;
@@ -142,11 +148,11 @@ void Shape::render(){
     spriteBatch->begin();
     const int len = this->points.size() / 2;
     for(int i = 0 ; i < len ;i++){
-        const int row = points[2*i + 0];
-        const int col = points[2*i + 1];
+        const int row = points[(i << 1)];
+        const int col = points[(i << 1) + 1];
 
-        cubeRect.left = gamePanelRect.left + col * cubeSize;
-        cubeRect.top = gamePanelRect.top - row * cubeSize;
+        cubeRect.left = this->left + col * cubeSize;
+        cubeRect.top = this->top - row * cubeSize;
 
         auto region = game->getCubeImageRegionByColor(getColor());
         spriteBatch->renderRegionImage(*region, cubeRect);
@@ -159,6 +165,10 @@ std::vector<int>& Shape::getPoints(){
 }
 
 bool Shape::checkPointsOverlayGrid(std::vector<int> &inputPoints){
+    if(game == nullptr){
+        return false;
+    }
+
     const int len = inputPoints.size() >> 1;
     for(int i = 0 ; i < len; i++){
         const int row = inputPoints[(i << 1)];

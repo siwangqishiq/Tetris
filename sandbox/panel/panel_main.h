@@ -28,10 +28,12 @@ public:
 
     void blitTetrisToGrid();
 
-    std::shared_ptr<Shape> createShapeByType(int shapeType);
+    static std::shared_ptr<Shape> createShapeByType(int shapeType , TetrisGame *game);
     purple::Rect rect;
 
     void onGameOver();
+
+    void onNextTetrisChanged();
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
