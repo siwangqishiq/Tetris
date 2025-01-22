@@ -30,7 +30,7 @@ namespace purple{
 
     class ShapeBatch;
     class SpriteBatch;
-    class TextureInfo;
+    struct TextureInfo;
     class TextRender;
     class TextRenderOutInfo;
     struct InitParams;
