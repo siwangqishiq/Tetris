@@ -23,15 +23,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.94489227"
-     inkscape:cx="411.15798"
-     inkscape:cy="320.67148"
+     inkscape:zoom="0.66813973"
+     inkscape:cx="664.53165"
+     inkscape:cy="316.55055"
      inkscape:window-width="1920"
-     inkscape:window-height="986"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     showguides="true" />
   <defs
      id="defs1" />
   <g
@@ -41,7 +42,10 @@
     <g
        id="g2"
        inkscape:label="yello"
-       transform="translate(0,62.840069)">
+       transform="matrix(1.1023114,0,0,1.0775105,0.69034363,62.813557)"
+       inkscape:export-filename="g2.png"
+       inkscape:export-xdpi="48"
+       inkscape:export-ydpi="48">
       <rect
          style="fill:#ffe74d;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
          id="rect1"
@@ -62,9 +66,55 @@
          y="4.2396836" />
     </g>
     <g
+       id="g2-61"
+       inkscape:label="purple"
+       transform="matrix(1.1023114,0,0,1.0775105,203.89029,62.813557)">
+      <rect
+         style="fill:#e580ff;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-4"
+         width="30.714651"
+         height="31.327425"
+         x="0.13460393"
+         y="0.11273607" />
+      <path
+         style="fill:#8800aa;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 0.12593571,31.388635 30.840586,31.285585 V 0.00968575 Z"
+         id="path1-23" />
+      <rect
+         style="fill:#d42aff;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-2"
+         width="22.504404"
+         height="23.099115"
+         x="4.2941194"
+         y="4.2396836" />
+    </g>
+    <g
+       id="g2-61-8"
+       inkscape:label="gray"
+       transform="matrix(1.1023114,0,0,1.0775105,237.75696,62.813557)">
+      <rect
+         style="fill:#b3b3b3;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-4-5"
+         width="30.714651"
+         height="31.327425"
+         x="0.13460393"
+         y="0.11273607" />
+      <path
+         style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 0.12593571,31.388635 30.840586,31.285585 V 0.00968575 Z"
+         id="path1-23-7" />
+      <rect
+         style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-2-6"
+         width="22.504404"
+         height="23.099115"
+         x="4.2941194"
+         y="4.2396836" />
+    </g>
+    <g
        id="g2-6"
        inkscape:label="green"
-       transform="translate(139.10305,62.840069)">
+       transform="matrix(1.1023114,0,0,1.0775105,136.15696,62.813557)">
       <rect
          style="fill:#87de87;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
          id="rect1-1"
@@ -85,9 +135,32 @@
          y="4.2396836" />
     </g>
     <g
+       id="g2-6-8"
+       inkscape:label="orange"
+       transform="matrix(1.1023114,0,0,1.0775105,126.50215,131.30362)">
+      <rect
+         style="fill:#ff9955;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
+         id="rect1-1-8"
+         width="30.714651"
+         height="31.327425"
+         x="39.616619"
+         y="-63.450508" />
+      <path
+         style="fill:#aa4400;fill-opacity:1;stroke:none;stroke-width:0.0681755px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 39.60795,-32.174608 30.71465,-0.10305 v -31.275899 z"
+         id="path1-8-2" />
+      <rect
+         style="fill:#ff7f2a;fill-opacity:1;stroke:none;stroke-width:0.613771;paint-order:stroke fill markers"
+         id="rect2-9-4"
+         width="22.504404"
+         height="23.099115"
+         x="43.776134"
+         y="-59.323559" />
+    </g>
+    <g
        id="g2-3"
        inkscape:label="blue"
-       transform="translate(104.32729,62.840069)">
+       transform="matrix(1.1023114,0,0,1.0775105,102.29029,62.813557)">
       <rect
          style="fill:#80b3ff;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
          id="rect1-2"
@@ -110,7 +183,7 @@
     <g
        id="g3"
        style="fill:#d40000;fill-opacity:1"
-       transform="translate(8.1548784,62.989762)"
+       transform="matrix(1.1023113,0,0,1.0775105,0.74545983,62.974852)"
        inkscape:label="red">
       <rect
          style="fill:#ff8080;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
@@ -133,7 +206,7 @@
     </g>
     <g
        id="g4"
-       transform="translate(3.9590988,62.8348)"
+       transform="matrix(1.0993168,0,0,1.075747,0.72611223,62.835619)"
        inkscape:label="cyan">
       <rect
          style="fill:#00e3e3;fill-opacity:1;stroke-width:0.681755;paint-order:stroke fill markers"
