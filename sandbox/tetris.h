@@ -8,8 +8,10 @@
 #include "common.h"
 
 enum GameState{
+    Unset = -1,
     Splash = 0,
     Start = 1,
+    Pause = 2,
 };
 
 
@@ -27,6 +29,7 @@ public:
     const static int ROW_COUNT = 21; //21行
 
     GameState state = Splash;
+    GameState preState = Unset;
 
     std::shared_ptr<purple::TextureImage> cubesTexture;
     std::shared_ptr<SceneSplash> splashScene = nullptr;
@@ -59,6 +62,7 @@ public:
     long updateDelayMils = 1000;//更新时间间隔 
     long deltaTimeMils = -1;
 
+    std::shared_ptr<purple::AudioEntity> audioItemChange;
     std::shared_ptr<purple::AudioEntity> audioBgm;
     std::shared_ptr<purple::AudioEntity> audioFailed;
     std::shared_ptr<purple::AudioEntity> audioCubeMove;
@@ -66,8 +70,8 @@ public:
     std::shared_ptr<purple::AudioEntity> audioCubeDismiss;
 
     void playSound(std::shared_ptr<purple::AudioEntity> entity);
-
     void stopSound(std::shared_ptr<purple::AudioEntity> entity);
+    void replaySound(std::shared_ptr<purple::AudioEntity> entity);
 private:
     void loadResoures();
 

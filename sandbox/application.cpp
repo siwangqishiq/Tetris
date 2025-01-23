@@ -79,7 +79,7 @@ void Application::init(){
         purple::InputManager::getInstance()->onEvent(event);
         
         if(glfwGetKey(windows_, GLFW_KEY_ESCAPE) == GLFW_PRESS){
-            isAppExist = true;
+            // isAppExist = true;
         }
         
     });

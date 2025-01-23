@@ -7,6 +7,10 @@ class PanelMain;
 class PanelNext;
 class PanelScore;
 
+const int MENU_RESUME = 0;
+const int MENU_EXIT_SPLASH = 1;
+const int MENU_EXIT_GAME = 2;
+
 class SceneGame{
 public:
     std::shared_ptr<PanelMain> panelMain;
@@ -36,4 +40,18 @@ private:
     TetrisGame *game = nullptr;
 
     std::shared_ptr<PanelScore> panelScore;
+    
+    std::vector<std::wstring> menus = {L"继续",L"退出到标题页",L"退出到桌面"};
+    int menuIndex = 0;
+
+    void pauseGame();
+    void resumeGame();
+    void renderGamePauseUi();
+
+    void renderMenus();
+
+    void onEscKeyPressed();
+    void onUpKeyPressed();
+    void onDownKeyPressed();
+    void onEnterKeyPressed();
 };

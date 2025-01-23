@@ -35,14 +35,8 @@ private:
     float logoWidth;
     float logoHeight;
 
-    glm::vec4 ColorTextSelected = glm::vec4(1.0f , 1.0f , 1.0f , 1.0f);
-    glm::vec4 ColorTextUnselected = glm::vec4(1.0f , 1.0f , 1.0f , 0.3f);
-
     std::vector<std::wstring> menuNames = {L"新游戏",L"退出"};
     int currentMenuIndex = 0;
-
-
-    std::shared_ptr<purple::AudioEntity> audioItemChange;
 
     void pressEnterKey();
     void selectNextMenuItem();

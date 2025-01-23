@@ -58,9 +58,14 @@ std::shared_ptr<Shape> PanelMain::createShapeByType(int shapeType , TetrisGame *
     return shape;
 }
 
+void PanelMain::reset(){
+    state = UNSET;
+}
+
 void PanelMain::update(){
     // if(currentShape != nullptr){
     // }
+    // std::cout << "state = " << state << std::endl;
 
     if(state == UNSET){
         state = GenCube;
@@ -86,7 +91,6 @@ void PanelMain::update(){
         }
     }else if(state == CubeDismiss){
         dismissGridRows();
-
         state = GenCube;
     }else if(state == GameOver){
         game->state = GameState::Splash;
@@ -128,11 +132,12 @@ void PanelMain::checkIsGameOver(){
     }
 }
 
-void PanelMain::onGameOver(){
+void PanelMain::onGameOver(bool isExist){
     game->stopSound(game->audioBgm);
-    game->playSound(game->audioFailed);
 
-    this->game->state = Splash;
+    if(!isExist){
+        game->playSound(game->audioFailed);
+    }
 
     for(int i = 0; i < TetrisGame::ROW_COUNT - 1 ;i++){
         for(int j = 1 ; j < TetrisGame::COL_COUNT - 1 ; j++){
@@ -140,10 +145,16 @@ void PanelMain::onGameOver(){
         }
     }//end for i
 
-    auto panelScore = game->gameScene->getPanelScore();
-    if(panelScore != nullptr){
-        panelScore->resetScore();
+    if(game->gameScene != nullptr){
+        game->gameScene->panelMain->state = GameOver;
+        game->gameScene->panelMain->currentShape = nullptr;
+        auto panelScore = game->gameScene->getPanelScore();
+        if(panelScore != nullptr){
+            panelScore->resetScore();
+        }
     }
+
+    game->state = Splash;
 }
 
 void PanelMain::currentTetrisDown(){
@@ -282,7 +293,6 @@ void PanelMain::render(){
     }
 }
 
-
 void PanelMain::renderGrids(){
     float left = rect.left;
     float top = rect.top;
@@ -338,6 +348,8 @@ void PanelMain::onInputEvent(purple::InputEvent &event){
     }else if((event.code == purple::CODE_KEY_ENTER || event.code == purple::CODE_KEY_SPACE)
         && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){ // roate
         currentShape->rotate();
+    }else if(event.code == purple::CODE_KEY_ESCAPE && event.action == purple::EVENT_ACTION_KEYBOARD_PRESS){
+        
     }
 }
 

@@ -51,6 +51,8 @@ void TetrisGame::loadResoures(){
     }//end for i
 
 
+    audioItemChange = purple::AudioManager::getInstance()
+        ->loadAudioEntity("audio/menu_item_change.wav");
     audioBgm = purple::AudioManager::getInstance()
         ->loadAudioEntity("audio/bgm3.mp3" , true);
     audioFailed = purple::AudioManager::getInstance()
@@ -75,6 +77,13 @@ void TetrisGame::stopSound(std::shared_ptr<purple::AudioEntity> entity){
         return;
     }
     purple::AudioManager::getInstance()->stopAudioEntity(entity);
+}
+
+void TetrisGame::replaySound(std::shared_ptr<purple::AudioEntity> entity){
+    if(entity == nullptr){
+        return;
+    }
+    purple::AudioManager::getInstance()->restartAudioEntity(entity);
 }
 
 std::shared_ptr<purple::TextureImageRegion> TetrisGame::getCubeImageRegionByColor(int cubeColor){
@@ -114,6 +123,7 @@ void TetrisGame::onTick(){
             splashScene->render();
             break;
         case Start:
+        case Pause:
             gameScene->update();
             gameScene->render();
             break;
@@ -138,6 +148,7 @@ bool TetrisGame::onInputEvent(purple::InputEvent &event){
             splashScene->onInputEvent(event);
             break;
         case Start:
+        case Pause:
             gameScene->onInputEvent(event);
             break;
         default:
@@ -164,12 +175,13 @@ void TetrisGame::onDispose(){
     if(splashScene != nullptr){
         splashScene->dispose();
     }
-
+    
     purple::AudioManager::getInstance()->releaseAudioEntity(audioBgm);
     purple::AudioManager::getInstance()->releaseAudioEntity(audioFailed);
     purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeMove);
     purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeRotate);
     purple::AudioManager::getInstance()->releaseAudioEntity(audioCubeDismiss);
+    purple::AudioManager::getInstance()->releaseAudioEntity(audioItemChange);
 }
 
 

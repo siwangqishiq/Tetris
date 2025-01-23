@@ -3,21 +3,16 @@
 #include "render/sprite.h"
 #include "tetris.h"
 #include "audio/audio.h"
+#include "panel/panel_main.h"
 
 void SceneSplash::init(){
     logoImage = purple::BuildImageByAsset("img/logo.png");
 
     logoTop = purple::Engine::ScreenHeight - 120;
     logoWidth = purple::Engine::ScreenHeight / 1.5f;
-
-    audioItemChange = purple::AudioManager::getInstance()
-        ->loadAudioEntity("audio/menu_item_change.wav");
 }
 
 void SceneSplash::dispose(){
-    if(audioItemChange != nullptr){
-        purple::AudioManager::getInstance()->releaseAudioEntity(audioItemChange);
-    }
 }
 
 void SceneSplash::onInputEvent(purple::InputEvent &event){
@@ -35,12 +30,16 @@ void SceneSplash::pressEnterKey(){
     purple::Log::i("SceneSplash" , "pressEnterKey");
 
     // purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
-    game->playSound(audioItemChange);
+    game->playSound(game->audioItemChange);
 
     if(currentMenuIndex == MENU_START_GAME){
         this->currentMenuIndex = 0;
         game->updateState(GameState::Start);
-        game->playSound(game->audioBgm);
+        game->replaySound(game->audioBgm);
+
+        if(game->gameScene != nullptr && game->gameScene->panelMain != nullptr){
+            game->gameScene->panelMain->reset();
+        }
     }else if(currentMenuIndex == MENU_EXIT_GAME){
         game->exitGame();
     }
@@ -48,7 +47,7 @@ void SceneSplash::pressEnterKey(){
 
 void SceneSplash::selectNextMenuItem(){
     purple::Log::i("SceneSplash" , "selectNextMenuItem");
-    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+    game->playSound(game->audioItemChange);
 
     currentMenuIndex = (currentMenuIndex + 1) % menuNames.size();
     purple::Log::i("SceneSplash" , "currentMenuIndex = %d" , currentMenuIndex);
@@ -56,7 +55,7 @@ void SceneSplash::selectNextMenuItem(){
 
 void SceneSplash::selectPriorMenuItem(){
     purple::Log::i("SceneSplash" , "selectPriorMenuItem");
-    purple::AudioManager::getInstance()->playAudioEntity(audioItemChange);
+    game->playSound(game->audioItemChange);
 
     const int newIndex = currentMenuIndex - 1;
     if(newIndex < 0){

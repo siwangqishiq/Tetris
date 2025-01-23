@@ -1,4 +1,8 @@
 #pragma once
+#include "glm/vec4.hpp"
+
+const glm::vec4 ColorTextSelected = glm::vec4(1.0f , 1.0f , 1.0f , 1.0f);
+const glm::vec4 ColorTextUnselected = glm::vec4(1.0f , 1.0f , 1.0f , 0.3f);
 
 enum CubeColor{
     Yellow = 1,

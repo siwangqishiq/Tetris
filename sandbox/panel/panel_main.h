@@ -20,6 +20,8 @@ public:
     PanelMain(TetrisGame *game,float cubeSize,
          float left , float top , float width , float height);
 
+    void reset();
+
     void update();
     void render();
     void onInputEvent(purple::InputEvent &event);
@@ -31,14 +33,16 @@ public:
     static std::shared_ptr<Shape> createShapeByType(int shapeType , TetrisGame *game);
     purple::Rect rect;
 
-    void onGameOver();
+    void onGameOver(bool isExist = false);
 
     void onNextTetrisChanged();
+
+    PanelMainState state = UNSET;
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
 
-    PanelMainState state = UNSET;
+    PanelMainState preState = UNSET;
 
     long timeRecord = 0;
 
