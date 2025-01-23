@@ -56,6 +56,7 @@ void Shape::onMoveLeft(){
 
 void Shape::onMoveRight(){
     if(!checkAllCubesCanMoveRight()){
+        std::cout << "can not move to right!!" << std::endl;
         return;
     }
 
@@ -97,6 +98,8 @@ bool Shape::checkAllCubesCanMoveLeft(){
             if(this->game->gridData[row][col - 1] > 0){
                 return false;
             }
+        }else if(col <= 1){
+            return false;
         }
     }//end for i
     return true;
@@ -107,13 +110,15 @@ bool Shape::checkAllCubesCanMoveRight(){
     for(int i = 0 ; i < len; i++){
         const int row = points[(i << 1)];
         const int col = points[(i << 1) + 1];
+        
         if(checkRowColInRange(row, col + 1)){
-            // std::cout << "row : " << row << " col :" << (col+1) 
-            //     << "  data= " << this->game->gridData[row][col + 1]
-            //     << std::endl;
+            // std::cout << "row : " << row << " col :" << (col+1) << std::endl;
             if(this->game->gridData[row][col + 1] > 0){
                 return false;
             }
+        }else if((col + 1) >= (TetrisGame::COL_COUNT - 1)){
+            // std::cout << "xxx row : " << row << " col :" << (col+1) << std::endl;
+            return false;
         }
     }//end for i
     return true;
