@@ -56,7 +56,7 @@ void Shape::onMoveLeft(){
 
 void Shape::onMoveRight(){
     if(!checkAllCubesCanMoveRight()){
-        std::cout << "can not move to right!!" << std::endl;
+        // std::cout << "can not move to right!!" << std::endl;
         return;
     }
 

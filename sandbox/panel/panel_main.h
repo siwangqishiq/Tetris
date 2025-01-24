@@ -41,9 +41,7 @@ public:
 private:
     TetrisGame *game = nullptr;
     float cubeSize;
-
-    PanelMainState preState = UNSET;
-
+    
     long timeRecord = 0;
 
     std::shared_ptr<Shape> currentShape = nullptr;
