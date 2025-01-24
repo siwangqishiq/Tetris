@@ -50,11 +50,17 @@ void TetrisGame::loadResoures(){
         cubesTextureList.push_back(textureRegion);
     }//end for i
 
+    float rndV = purple::RandomUtil::randomFloat(0.0f , 1.0f);
+    if(rndV >= 0.1f){
+        audioBgm = purple::AudioManager::getInstance()
+            ->loadAudioEntity("audio/bgm.mp3" , true);
+    }else{
+        audioBgm = purple::AudioManager::getInstance()
+            ->loadAudioEntity("audio/chun.mp3" , true);
+    }
 
     audioItemChange = purple::AudioManager::getInstance()
         ->loadAudioEntity("audio/menu_item_change.wav");
-    audioBgm = purple::AudioManager::getInstance()
-        ->loadAudioEntity("audio/bgm3.mp3" , true);
     audioFailed = purple::AudioManager::getInstance()
         ->loadAudioEntity("audio/failed.mp3");
     audioCubeMove = purple::AudioManager::getInstance()
