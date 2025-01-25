@@ -6,6 +6,7 @@
 #include "GLFW/glfw3.h"
 #include <memory>
 #include "purple.h"
+#include "gamepad.h"
 
 
 class Application{
@@ -59,5 +60,10 @@ private:
     std::vector<std::shared_ptr<purple::IApp>> appInstanceList;
 
     std::wstring fpsStr = L"0";
+
+    void processGamePadEvent();
+
+    //
+    GamePadInput gamepadInput;
 };
 

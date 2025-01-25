@@ -51,7 +51,7 @@ void TetrisGame::loadResoures(){
     }//end for i
 
     float rndV = purple::RandomUtil::randomFloat(0.0f , 1.0f);
-    if(rndV >= 0.1f){
+    if(rndV >= 0.5f){
         audioBgm = purple::AudioManager::getInstance()
             ->loadAudioEntity("audio/bgm.mp3" , true);
     }else{

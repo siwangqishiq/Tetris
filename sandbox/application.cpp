@@ -153,6 +153,15 @@ void Application::init(){
         purple::InputManager::getInstance()->onEvent(event);
     });
 
+    glfwSetJoystickCallback([](int jid, int event){
+        // std::cout << "joystick event: jid " << jid << "   event = " << event << std::endl;
+        if(event == GLFW_CONNECTED){
+            // std::cout << "joystick event: jid " << jid << "   connected" << std::endl;
+        }else if(event == GLFW_DISCONNECTED){
+            // std::cout << "joystick event: jid " << jid << "   disconnected" << std::endl;
+        }
+    });
+
     glfwSetFramebufferSizeCallback(window, [](GLFWwindow* windows_,int w,int h){
         Application* app_ = static_cast<Application *>(glfwGetWindowUserPointer(windows_));
         if(app_ != nullptr){
@@ -165,6 +174,9 @@ void Application::init(){
         glfwTerminate();
         return;
     }
+
+    //hide cursor
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwMakeContextCurrent(window);
     glfwSetWindowUserPointer(window, static_cast<void *>(this));
@@ -251,6 +263,7 @@ void Application::runLoop(){
     
     while(!glfwWindowShouldClose(window)) {
         glfwPollEvents();
+        processGamePadEvent();
         tick();
         glfwSwapBuffers(window);
         glfwSwapInterval(1);//锁定固定帧率
@@ -262,6 +275,40 @@ void Application::runLoop(){
 
     purple::Engine::dispose();
     glfwTerminate();
+}
+
+void Application::processGamePadEvent(){
+    gamepadInput.updateButtonState();
+
+    // const char *joystickName = glfwGetJoystickName(GLFW_JOYSTICK_1);
+    // std::cout << joystickName << std::endl;
+    // int count = 0;
+    // auto axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1 , &count);
+    // std::cout << "count : " << count << std::endl;
+    // for(int i = 0 ; i < count; i++){
+    //     std::cout << axes[i] << "\t"; 
+    // }
+    // std::cout << std::endl;
+
+    // int joyBtnCount = 0;
+    // auto btns = glfwGetJoystickButtons(GLFW_JOYSTICK_1 , &joyBtnCount);
+    // std::cout << "button: " << joyBtnCount << "   ";
+
+    // for(int i = 0 ; i < joyBtnCount; i++){
+    //     bool r = (btns[i] == GLFW_PRESS)?true:false;
+    //     std::cout << r << ""; 
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "game pad = " << glfwGetGamepadName(GLFW_JOYSTICK_1) << std::endl;
+
+    // int joyHatCount = 0;
+    // auto hats = glfwGetJoystickHats(GLFW_JOYSTICK_1 , &joyHatCount);
+    // std::cout << "hats:" << joyHatCount << "   ";;
+    // for(int i = 0 ; i < joyHatCount; i++){
+    //     std::cout << hats[i] << "\t"; 
+    // }
+    // std::cout << std::endl;
 }
 
 bool Application::onInputEvent(purple::InputEvent &event){
