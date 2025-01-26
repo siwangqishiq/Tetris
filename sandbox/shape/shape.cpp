@@ -6,6 +6,7 @@
 #include "scene/scene_game.h"
 #include "panel/panel_main.h"
 #include <memory>
+#include "purple_ui.h"
 
 Shape::Shape(TetrisGame *game){
     this->game = game;
@@ -171,6 +172,18 @@ void Shape::render(){
         spriteBatch->renderRegionImage(*region, cubeRect);
     }//end for i
     spriteBatch->end();
+}
+
+void Shape::renderShadow(){
+    using namespace purple;
+    purple::Paint paint;
+    paint.fillStyle = FillStyle::Stroken;
+    paint.color = ConverColorValue(Color::White);
+    
+    auto shapeBatch = purple::Engine::getRenderEngine()->getShapeBatch();
+    shapeBatch->begin();
+
+    shapeBatch->end();
 }
 
 std::vector<int>& Shape::getPoints(){

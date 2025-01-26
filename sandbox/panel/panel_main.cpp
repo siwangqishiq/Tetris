@@ -290,6 +290,8 @@ void PanelMain::render(){
         auto gamePanelRect = this->game->gameScene->panelMain->rect;
         currentShape->update(gamePanelRect.left , gamePanelRect.top , cubeSize);
         currentShape->render();
+
+        currentShape->renderShadow();
     }
 }
 

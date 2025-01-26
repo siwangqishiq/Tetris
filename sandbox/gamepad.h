@@ -44,7 +44,7 @@ private:
         GLFW_GAMEPAD_BUTTON_DPAD_UP,
         GLFW_GAMEPAD_BUTTON_DPAD_DOWN,
         // GLFW_GAMEPAD_BUTTON_BACK,
-        GLFW_GAMEPAD_BUTTON_START
+        GLFW_GAMEPAD_BUTTON_START,
     };
 
     int convertGlfwCode(int glfwButtonCode);

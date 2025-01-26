@@ -20,6 +20,7 @@ public:
     
     virtual void reset();
     virtual void render();
+    virtual void renderShadow();
     
     void rotate();
     void moveLeft();

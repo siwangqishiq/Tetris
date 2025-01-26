@@ -62,7 +62,6 @@ void GamePadInput::postPressdEvent(int glfwButtonCode){
     event.action = purple::EVENT_ACTION_KEYBOARD_PRESS;
     event.code = convertGlfwCode(glfwButtonCode);
     purple::InputManager::getInstance()->onEvent(event);
-
 }
 
 void GamePadInput::postReleaseEvent(int glfwButtonCode){
