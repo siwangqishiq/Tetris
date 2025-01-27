@@ -17,6 +17,8 @@ public:
     void update(float left , float top , float cubeSize);
     
     virtual CubeColor getColor();
+
+    virtual glm::vec4 getShaodowColor();
     
     virtual void reset();
     virtual void render();
@@ -39,6 +41,8 @@ public:
     bool checkAllCubesCanMoveLeft();
     bool checkAllCubesCanMoveRight();
     bool checkAllCubesCanMoveDown();
+
+    int findShadowShapeRowOffset();
 
     bool checkPointsOverlayGrid(std::vector<int> &inputPoints);
 

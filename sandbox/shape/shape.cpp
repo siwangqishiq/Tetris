@@ -16,6 +16,40 @@ CubeColor Shape::getColor(){
     return CubeColor::Gray;
 }
 
+glm::vec4 Shape::getShaodowColor(){
+    CubeColor cubeColor = getColor();
+    glm::vec4 shadowColor = purple::ConverColorValue(purple::Color::White);
+    switch (cubeColor){
+    case Yellow:
+        shadowColor = purple::ConverColorValue(purple::Color::Yellow);
+        break;
+    case Cyan:
+        shadowColor = purple::ConverColorValue(purple::Color::Cyan);
+        break;
+    case Red:
+        shadowColor = purple::ConverColorValue(purple::Color::Red);
+        break;
+    case Blue:
+        shadowColor = purple::ConverColorValue(purple::Color::SkyBlue);
+        break;
+    case Green:
+        shadowColor = purple::ConverColorValue(purple::Color::Green);
+        break;
+    case Orange:
+        shadowColor = purple::ConverColorValue(purple::Color::Orange);
+        break;
+    case Purple:
+        shadowColor = purple::ConverColorValue(purple::Color::Purple);
+        break;
+    case Gray:
+        shadowColor = purple::ConverColorValue(purple::Color::Gray);
+        break;
+    default:
+        break;
+    }
+    return shadowColor;
+}
+
 void Shape::reset(){
 }
 
@@ -178,12 +212,69 @@ void Shape::renderShadow(){
     using namespace purple;
     purple::Paint paint;
     paint.fillStyle = FillStyle::Stroken;
-    paint.color = ConverColorValue(Color::White);
+    paint.stokenWidth = 1.0f;
+    paint.color = getShaodowColor();
+    // paint.color[3] = 0.6f;
     
+    std::vector<int> originPoints = points;
+    const int len = originPoints.size() >> 1;
+
+    purple::Rect cubeRect;
+    cubeRect.width = cubeSize;
+    cubeRect.height = cubeSize;
+
     auto shapeBatch = purple::Engine::getRenderEngine()->getShapeBatch();
     shapeBatch->begin();
+    for(int i = 0 ;i < len ;i++){
+        int row = originPoints[i << 1];
+        row += findShadowShapeRowOffset();
+        const int col = originPoints[(i << 1) + 1];
 
+        cubeRect.left = this->left + col * cubeSize;
+        cubeRect.top = this->top - row * cubeSize;
+        shapeBatch->renderRect(cubeRect , paint);
+    }//end for i
     shapeBatch->end();
+}
+
+/**
+ * @brief 
+ *       1
+ *     1 1
+ *       1
+ * 
+ * 1 1 1 0 1
+ * 1 1 1 1 1
+ * @return int 
+ */
+int Shape::findShadowShapeRowOffset(){
+    if(game == nullptr){
+        return 0;
+    }
+
+    std::vector<int> originPoints = points;
+    const int len = originPoints.size() >> 1;
+    int offset = TetrisGame::ROW_COUNT;
+    for(int i = 0 ;i < len ;i++){
+        const int row = originPoints[i << 1];
+        const int col = originPoints[(i << 1) + 1];
+
+        int rowIndex = row;
+        while(rowIndex <= TetrisGame::ROW_COUNT){
+            if(rowIndex >=0 && 
+                game->gridData[rowIndex][col] != GRID_TYPE_IDLE){
+                break;
+            }
+            rowIndex++;
+        }//end for while
+
+        const int rowDeltaValue = rowIndex - row - 1;
+        if(rowDeltaValue < offset){
+            offset = rowDeltaValue;
+        }
+    }//end for i
+    // std::cout << "offset = " << offset << std::endl;
+    return offset;
 }
 
 std::vector<int>& Shape::getPoints(){
