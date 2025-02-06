@@ -11,7 +11,7 @@
 //app config opt
 int Application::fps = 0;
 
-bool isFullScreen = true;
+bool isFullScreen = false;
 bool isAppExist = false;
 
 void Application::onCreate(){

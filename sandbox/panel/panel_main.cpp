@@ -99,6 +99,7 @@ void PanelMain::update(){
 
 void PanelMain::genNewCube(){
     auto type = this->game->getNextTetrisType();
+    // type = TETRIS_TYPE_O;
     game->genNextTertisType();
 
     game->playSound(game->audioCubeMove);
